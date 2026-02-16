@@ -88,9 +88,9 @@ class LoginScreen extends ConsumerWidget {
                     width: double.infinity,
                     child: InkWell(
                       onTap: () {
-                        /*Future.microtask(() =>
+                        Future.microtask(() =>
                             Navigator.pushReplacementNamed(context, Routes.signUp)
-                        );*/
+                        );
                       },
                       child: const Text(
                         "Don't have an account? Register here",
