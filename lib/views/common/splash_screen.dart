@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../config/string_values.dart';
-import '../core/routes.dart';
+import '../../config/string_values.dart';
+import '../../core/routes.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -14,7 +14,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Future.delayed(const Duration(seconds: 1), () {
-      Navigator.pushReplacementNamed(context, Routes.login);
+      Navigator.pushReplacementNamed(context, Routes.userSelector);
     });
   }
 

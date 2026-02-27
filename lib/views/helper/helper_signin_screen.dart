@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../config/image_links.dart';
-import '../config/string_values.dart';
-import '../core/routes.dart';
-import '../viewmodels/auth_provider.dart';
-import '../components/custom_button.dart';
 
-class LoginScreen extends ConsumerWidget {
-  const LoginScreen({super.key});
+import '../../components/custom_button.dart';
+import '../../config/image_links.dart';
+import '../../config/string_values.dart';
+import '../../core/routes.dart';
+
+class HelperSignInScreen extends ConsumerWidget {
+  const HelperSignInScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -62,8 +62,8 @@ class LoginScreen extends ConsumerWidget {
                   SizedBox(
                     width: double.infinity,
                     child: CustomButton(
-                      label: 'Login',
-                      onPressed: () => {}/*ref
+                        label: 'Login',
+                        onPressed: () => {}/*ref
                           .read(authControllerProvider)
                           .signInWithEmail(
                         emailController.text.trim(),
@@ -88,9 +88,7 @@ class LoginScreen extends ConsumerWidget {
                     width: double.infinity,
                     child: InkWell(
                       onTap: () {
-                        Future.microtask(() =>
-                            Navigator.pushReplacementNamed(context, Routes.signUp)
-                        );
+                        //Future.microtask(() => Navigator.pushReplacementNamed(context, Routes.signUp));
                       },
                       child: const Text(
                         "Don't have an account? Register here",

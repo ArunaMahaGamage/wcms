@@ -1,0 +1,1 @@
+enum UserRole { admin, citizen, driver, helper }

@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:wcms/viewmodels/settings_provider.dart';
-import 'package:wcms/views/login_screen.dart';
+import 'package:wcms/views/admin/admin_signin_screen.dart';
+import 'package:wcms/views/citizen/citizen_signIn_screen.dart';
+import 'package:wcms/views/citizen/citizen_signup_screen.dart';
+import 'package:wcms/views/common/user_selector_screen.dart';
+import 'package:wcms/views/driver/driver_sign_in_screen.dart';
+import 'package:wcms/views/helper/helper_signin_screen.dart';
 import 'package:wcms/views/onboarding_screen.dart';
-import 'package:wcms/views/signup_screen.dart';
 import 'core/routes.dart';
 import 'models/settings.dart';
-import 'views/splash_screen.dart';
+import 'views/common/splash_screen.dart';
 
 
 class App extends ConsumerWidget {
@@ -37,8 +41,14 @@ class App extends ConsumerWidget {
       initialRoute: Routes.splash,
       routes: {
         Routes.splash: (_) => const SplashScreen(),
-        Routes.login: (_) => const LoginScreen(),
-        Routes.signUp: (_) => const SignupScreen(),
+        Routes.userSelector: (_) => const RoleSelectorScreen(),
+        Routes.signInAdmin: (_) => const AdminSignInScreen(),
+        Routes.signInCitizen: (_) => const CitizenSignInScreen(),
+        Routes.signInDriver: (_) => const DriverSignInScreen(),
+        Routes.signInHelper: (_) => const HelperSignInScreen(),
+        Routes.signUpCitizen: (_) => const CitizenSignupScreen(),
+        //Routes.signInHelper: (_) => const SignupScreen(),
+        //Routes.signInHelper: (_) => const SignupScreen(),
         Routes.onboarding: (_) => const OnboardingScreen(),
         //Routes.home: (_) => const HomeScreen(),
       },

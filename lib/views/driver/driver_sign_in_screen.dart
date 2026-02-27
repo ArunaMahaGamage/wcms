@@ -6,8 +6,8 @@ import '../../config/image_links.dart';
 import '../../config/string_values.dart';
 import '../../core/routes.dart';
 
-class CitizenSignInScreen extends ConsumerWidget {
-  const CitizenSignInScreen({super.key});
+class DriverSignInScreen extends ConsumerWidget {
+  const DriverSignInScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
