@@ -84,7 +84,7 @@ class HelperSignInScreen extends ConsumerWidget {
                                 context, Routes.signUp))
                           }),
                       ),*/
-                  SizedBox(
+                  /*SizedBox(
                     width: double.infinity,
                     child: InkWell(
                       onTap: () {
@@ -100,7 +100,7 @@ class HelperSignInScreen extends ConsumerWidget {
                         ),
                       ),
                     ),
-                  ),
+                  ),*/
                   const SizedBox(height: 8),
 
                   // Anonymous login
