@@ -10,11 +10,12 @@ class DashboardItem {
 
 final adminDashboardItemsProvider = Provider<List<DashboardItem>>((ref) {
   return [
-    DashboardItem(title: "Complaints", imagePath: ImageLinks.loginScreenImage),
-    DashboardItem(title: "Schedules", imagePath: ImageLinks.loginScreenImage),
-    DashboardItem(title: "Routes", imagePath: ImageLinks.loginScreenImage),
-    DashboardItem(title: "Drivers", imagePath: ImageLinks.loginScreenImage),
-    DashboardItem(title: "Helpers", imagePath: ImageLinks.loginScreenImage),
+    DashboardItem(title: "All Complaints", imagePath: ImageLinks.loginScreenImage),
+    DashboardItem(title: "Current Schedules", imagePath: ImageLinks.loginScreenImage),
+    DashboardItem(title: "Schedules Routes", imagePath: ImageLinks.loginScreenImage),
+    DashboardItem(title: "Add Drivers", imagePath: ImageLinks.loginScreenImage),
+    DashboardItem(title: "Add Helpers", imagePath: ImageLinks.loginScreenImage),
+    DashboardItem(title: "Add Vehicles", imagePath: ImageLinks.loginScreenImage),
     DashboardItem(title: "Reports", imagePath: ImageLinks.loginScreenImage),
   ];
 });
