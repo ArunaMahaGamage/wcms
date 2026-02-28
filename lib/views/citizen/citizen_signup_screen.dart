@@ -90,7 +90,8 @@ class CitizenSignupScreen extends ConsumerWidget {
                         formKey.currentState!.save(),
                         ref.read(citizenFormProvider.notifier).state = citizenData,
                         // TODO: Call API with citizenData
-                      }
+                      },
+                      Future.microtask(() => Navigator.pushReplacementNamed(context, Routes.signUpCitizenStatus)),
                     }/*ref
                           .read(authControllerProvider)
                           .signInWithEmail(

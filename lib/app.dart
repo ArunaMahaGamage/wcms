@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:wcms/viewmodels/settings_provider.dart';
 import 'package:wcms/views/admin/admin_signin_screen.dart';
 import 'package:wcms/views/citizen/citizen_signIn_screen.dart';
+import 'package:wcms/views/citizen/citizen_sign_up_status_screen.dart';
 import 'package:wcms/views/citizen/citizen_signup_screen.dart';
 import 'package:wcms/views/common/user_selector_screen.dart';
 import 'package:wcms/views/driver/driver_sign_in_screen.dart';
@@ -47,6 +48,7 @@ class App extends ConsumerWidget {
         Routes.signInDriver: (_) => const DriverSignInScreen(),
         Routes.signInHelper: (_) => const HelperSignInScreen(),
         Routes.signUpCitizen: (_) => const CitizenSignupScreen(),
+        Routes.signUpCitizenStatus: (_) => const CitizenSignupStatusScreen(),
         //Routes.signInHelper: (_) => const SignupScreen(),
         //Routes.signInHelper: (_) => const SignupScreen(),
         Routes.onboarding: (_) => const OnboardingScreen(),
