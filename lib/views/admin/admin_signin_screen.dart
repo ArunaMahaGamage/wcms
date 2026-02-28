@@ -86,14 +86,14 @@ class AdminSignInScreen extends ConsumerWidget {
                                 context, Routes.signUp))
                           }),
                       ),*/
-                  /*SizedBox(
+                  SizedBox(
                     width: double.infinity,
                     child: InkWell(
                       onTap: () {
                         //Future.microtask(() => Navigator.pushReplacementNamed(context, Routes.signUp));
                       },
                       child: const Text(
-                        "Don't have an account? Register here",
+                        "Forgot password",
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: 16,
@@ -102,7 +102,7 @@ class AdminSignInScreen extends ConsumerWidget {
                         ),
                       ),
                     ),
-                  ),*/
+                  ),
                   const SizedBox(height: 8),
 
                   // Anonymous login
