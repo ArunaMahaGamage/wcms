@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:wcms/viewmodels/settings_provider.dart';
 import 'package:wcms/views/admin/admin_signin_screen.dart';
+import 'package:wcms/views/citizen/citizen_dashboard_screen.dart';
 import 'package:wcms/views/citizen/citizen_signIn_screen.dart';
 import 'package:wcms/views/citizen/citizen_sign_up_status_screen.dart';
 import 'package:wcms/views/citizen/citizen_signup_screen.dart';
@@ -49,6 +50,7 @@ class App extends ConsumerWidget {
         Routes.signInHelper: (_) => const HelperSignInScreen(),
         Routes.signUpCitizen: (_) => const CitizenSignupScreen(),
         Routes.signUpCitizenStatus: (_) => const CitizenSignupStatusScreen(),
+        Routes.dashboardCitizen: (_) => const CitizenDashboardScreen(),
         //Routes.signInHelper: (_) => const SignupScreen(),
         //Routes.signInHelper: (_) => const SignupScreen(),
         Routes.onboarding: (_) => const OnboardingScreen(),

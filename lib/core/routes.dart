@@ -7,6 +7,7 @@ class Routes {
   static const signInHelper = '/sign_in_helper';
   static const signUpCitizen = '/sign_up_citizen';
   static const signUpCitizenStatus = '/sign_up_citizen_status';
+  static const dashboardCitizen = '/dashboard_citizen';
   static const onboarding = '/onboarding';
   static const home = '/home';
 }
