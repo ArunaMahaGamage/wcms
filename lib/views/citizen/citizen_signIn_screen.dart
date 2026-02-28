@@ -88,7 +88,7 @@ class CitizenSignInScreen extends ConsumerWidget {
                     width: double.infinity,
                     child: InkWell(
                       onTap: () {
-                        //Future.microtask(() => Navigator.pushReplacementNamed(context, Routes.signUp));
+                        Future.microtask(() => Navigator.pushReplacementNamed(context, Routes.signUpCitizen));
                       },
                       child: const Text(
                         "Don't have an account? Register here",
