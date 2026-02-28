@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:wcms/core/routes.dart';
 
 final citizenFormProvider = StateProvider<Map<String, dynamic>>((ref) => {});
 
@@ -12,7 +13,11 @@ class CitizenSignupScreen extends ConsumerWidget {
     final citizenData = ref.watch(citizenFormProvider);
 
     return Scaffold(
-      appBar: AppBar(title: const Text("Add Citizen")),
+      appBar: AppBar(
+        leading: IconButton(
+            icon: Icon(Icons.arrow_back), onPressed: () => Future.microtask(() => Navigator.pushReplacementNamed(context, Routes.signInCitizen))
+        ),
+          title: const Text("Add Citizen")),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Form(
