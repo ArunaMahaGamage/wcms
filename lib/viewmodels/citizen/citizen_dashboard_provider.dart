@@ -11,10 +11,15 @@ class DashboardItem {
 final citizenDashboardItemsProvider = Provider<List<DashboardItem>>((ref) {
   return [
     DashboardItem(title: "Complaints", imagePath: ImageLinks.loginScreenImage),
-    DashboardItem(title: "Schedules", imagePath: ImageLinks.loginScreenImage),
-    DashboardItem(title: "Routes", imagePath: ImageLinks.loginScreenImage),
-    DashboardItem(title: "Drivers", imagePath: ImageLinks.loginScreenImage),
-    DashboardItem(title: "Helpers", imagePath: ImageLinks.loginScreenImage),
-    DashboardItem(title: "Reports", imagePath: ImageLinks.loginScreenImage),
+    DashboardItem(title: "Collection Schedule", imagePath: ImageLinks.loginScreenImage),
+    DashboardItem(title: "New Vehicle Routes", imagePath: ImageLinks.loginScreenImage),
+    DashboardItem(title: "New Bin", imagePath: ImageLinks.loginScreenImage),
+    DashboardItem(title: "Notification", imagePath: ImageLinks.loginScreenImage),
+    DashboardItem(title: "User Reports", imagePath: ImageLinks.loginScreenImage),
+    DashboardItem(title: "Recycling Tips", imagePath: ImageLinks.loginScreenImage),
+    DashboardItem(title: "Waste Statistics", imagePath: ImageLinks.loginScreenImage),
+    DashboardItem(title: "Policy Updates", imagePath: ImageLinks.loginScreenImage),
+    DashboardItem(title: "Environmental Impact", imagePath: ImageLinks.loginScreenImage),
+    DashboardItem(title: "Environmental Law", imagePath: ImageLinks.loginScreenImage),
   ];
 });
