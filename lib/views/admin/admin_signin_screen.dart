@@ -63,7 +63,9 @@ class AdminSignInScreen extends ConsumerWidget {
                     width: double.infinity,
                     child: CustomButton(
                         label: 'Login',
-                        onPressed: () => {}/*ref
+                        onPressed: () => {
+                          Future.microtask(() => Navigator.pushReplacementNamed(context, Routes.dashboardAdmin))
+                        }/*ref
                           .read(authControllerProvider)
                           .signInWithEmail(
                         emailController.text.trim(),

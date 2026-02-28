@@ -7,7 +7,7 @@ class CitizenDashboardScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final items = ref.watch(dashboardItemsProvider);
+    final items = ref.watch(citizenDashboardItemsProvider);
 
     return Scaffold(
       appBar: AppBar(

@@ -8,6 +8,9 @@ class Routes {
   static const signUpCitizen = '/sign_up_citizen';
   static const signUpCitizenStatus = '/sign_up_citizen_status';
   static const dashboardCitizen = '/dashboard_citizen';
+  static const dashboardAdmin = '/dashboard_admin';
+  static const dashboardDriver = '/dashboard_driver';
+  static const dashboardHelper = '/dashboard_helper';
   static const onboarding = '/onboarding';
   static const home = '/home';
 }

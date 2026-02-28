@@ -63,7 +63,9 @@ class DriverSignInScreen extends ConsumerWidget {
                     width: double.infinity,
                     child: CustomButton(
                         label: 'Login',
-                        onPressed: () => {}/*ref
+                        onPressed: () => {
+                          Future.microtask(() => Navigator.pushReplacementNamed(context, Routes.dashboardDriver))
+                        }/*ref
                           .read(authControllerProvider)
                           .signInWithEmail(
                         emailController.text.trim(),

@@ -8,7 +8,7 @@ class DashboardItem {
   DashboardItem({required this.title, required this.imagePath});
 }
 
-final dashboardItemsProvider = Provider<List<DashboardItem>>((ref) {
+final adminDashboardItemsProvider = Provider<List<DashboardItem>>((ref) {
   return [
     DashboardItem(title: "Complaints", imagePath: ImageLinks.loginScreenImage),
     DashboardItem(title: "Schedules", imagePath: ImageLinks.loginScreenImage),
