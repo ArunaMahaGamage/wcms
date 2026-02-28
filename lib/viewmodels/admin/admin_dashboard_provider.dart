@@ -13,6 +13,7 @@ final adminDashboardItemsProvider = Provider<List<DashboardItem>>((ref) {
     DashboardItem(title: "All Complaints", imagePath: ImageLinks.loginScreenImage),
     DashboardItem(title: "Current Schedules", imagePath: ImageLinks.loginScreenImage),
     DashboardItem(title: "Schedules Routes", imagePath: ImageLinks.loginScreenImage),
+    DashboardItem(title: "Add Admin", imagePath: ImageLinks.loginScreenImage),
     DashboardItem(title: "Add Drivers", imagePath: ImageLinks.loginScreenImage),
     DashboardItem(title: "Add Helpers", imagePath: ImageLinks.loginScreenImage),
     DashboardItem(title: "Add Vehicles", imagePath: ImageLinks.loginScreenImage),
