@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:wcms/components/custom_button.dart';
 import 'package:wcms/core/routes.dart';
 
 final citizenFormProvider = StateProvider<Map<String, dynamic>>((ref) => {});
@@ -65,18 +66,6 @@ class CitizenSignupScreen extends ConsumerWidget {
                 onSaved: (val) => citizenData["mobileNumber"] = val,
               ),
               TextFormField(
-                decoration: const InputDecoration(labelText: "Position"),
-                onSaved: (val) => citizenData["position"] = val,
-              ),
-              TextFormField(
-                decoration: const InputDecoration(labelText: "Department"),
-                onSaved: (val) => citizenData["department"] = val,
-              ),
-              TextFormField(
-                decoration: const InputDecoration(labelText: "Employee Number"),
-                onSaved: (val) => citizenData["employeeNumber"] = val,
-              ),
-              TextFormField(
                 decoration: const InputDecoration(labelText: "Provincial"),
                 onSaved: (val) => citizenData["provincial"] = val,
               ),
@@ -91,15 +80,24 @@ class CitizenSignupScreen extends ConsumerWidget {
                 citizenData["divisionalSecretaryDivisions"] = val,
               ),
               const SizedBox(height: 20),
-              ElevatedButton(
-                child: const Text("Submit"),
-                onPressed: () {
-                  if (formKey.currentState!.validate()) {
-                    formKey.currentState!.save();
-                    ref.read(citizenFormProvider.notifier).state = citizenData;
-                    // TODO: Call API with citizenData
-                  }
-                },
+
+              SizedBox(
+                width: double.infinity,
+                child: CustomButton(
+                    label: 'Submit',
+                    onPressed: () => {
+                      if (formKey.currentState!.validate()) {
+                        formKey.currentState!.save(),
+                        ref.read(citizenFormProvider.notifier).state = citizenData,
+                        // TODO: Call API with citizenData
+                      }
+                    }/*ref
+                          .read(authControllerProvider)
+                          .signInWithEmail(
+                        emailController.text.trim(),
+                        passwordController.text.trim(),
+                      )*/
+                ),
               ),
             ],
           ),
