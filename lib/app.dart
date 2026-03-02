@@ -3,7 +3,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:wcms/viewmodels/settings_provider.dart';
 import 'package:wcms/views/admin/admin_dashboard_screen.dart';
 import 'package:wcms/views/admin/admin_signin_screen.dart';
+import 'package:wcms/views/citizen/citizen_complain_list_screen.dart';
 import 'package:wcms/views/citizen/citizen_complain_screen.dart';
+import 'package:wcms/views/citizen/citizen_complain_status_Screen.dart';
 import 'package:wcms/views/citizen/citizen_dashboard_screen.dart';
 import 'package:wcms/views/citizen/citizen_signIn_screen.dart';
 import 'package:wcms/views/citizen/citizen_sign_up_status_screen.dart';
@@ -57,6 +59,8 @@ class App extends ConsumerWidget {
         Routes.signInCitizen: (_) => const CitizenSignInScreen(),
         Routes.dashboardCitizen: (_) => const CitizenDashboardScreen(),
         Routes.complaintCitizen: (_) => CitizenComplainScreen(),
+        Routes.complaintCitizenStatus: (_) => CitizenComplainStatusScreen(),
+        Routes.complaintListCitizen: (_) => CitizenComplainListScreen(),
         // Driver
         Routes.signInDriver: (_) => const DriverSignInScreen(),
         Routes.dashboardDriver: (_) => const DriverDashboardScreen(),

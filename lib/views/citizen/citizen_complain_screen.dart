@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:wcms/core/routes.dart';
 
 import '../../models/complain.dart';
 import '../../viewmodels/citizen/complaints_provider.dart';
@@ -16,7 +17,11 @@ class CitizenComplainScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-      appBar: AppBar(title: Text("Submit Complaint")),
+      appBar: AppBar(
+          leading: IconButton(
+              icon: Icon(Icons.arrow_back), onPressed: () => Future.microtask(() => Navigator.pushReplacementNamed(context, Routes.dashboardCitizen))
+          ),
+          title: Text("Submit Complaint")),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Form(
@@ -93,6 +98,7 @@ class CitizenComplainScreen extends ConsumerWidget {
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(content: Text("Complaint Submitted")),
                     );
+                    Future.microtask(() => Navigator.pushReplacementNamed(context, Routes.complaintCitizenStatus));
                   }
                 },
               ),

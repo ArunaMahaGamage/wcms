@@ -1,0 +1,1 @@
+enum CitizenComplainStatus { idle, loading, success, error }

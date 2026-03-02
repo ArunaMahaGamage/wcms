@@ -1,0 +1,1 @@
+enum CitizenSignUpStatus { idle, loading, success, error }

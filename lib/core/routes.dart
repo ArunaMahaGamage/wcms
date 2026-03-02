@@ -12,6 +12,8 @@ class Routes {
   static const signInCitizen = '/sign_in_citizen';
   static const dashboardCitizen = '/dashboard_citizen';
   static const complaintCitizen = '/complaint_citizen';
+  static const complaintCitizenStatus = '/complaint_citizen_status';
+  static const complaintListCitizen = '/complaint_list_citizen';
 
   // Driver
   static const signInDriver = '/sign_in_driver';
