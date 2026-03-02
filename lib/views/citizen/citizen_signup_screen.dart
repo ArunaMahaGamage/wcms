@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:wcms/api/citizen/citizen_api_service.dart';
 import 'package:wcms/components/custom_button.dart';
 import 'package:wcms/core/routes.dart';
+import 'package:wcms/models/citizen/citizen.dart';
 
 final citizenFormProvider = StateProvider<Map<String, dynamic>>((ref) => {});
 
@@ -13,11 +15,20 @@ class CitizenSignupScreen extends ConsumerWidget {
     final formKey = GlobalKey<FormState>();
     final citizenData = ref.watch(citizenFormProvider);
 
+    Future<Citizen> createUser() async {
+      final citizen = Citizen.fromMap(citizenData);
+      Citizen citizenResponse = await CitizenApiService().createCitizen(citizen);
+      if (citizenResponse.idNumber.isNotEmpty) {
+        Future.microtask(() => Navigator.pushReplacementNamed(context, Routes.signUpCitizenStatus));
+      }
+      return citizenResponse;
+    }
+
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-            icon: Icon(Icons.arrow_back), onPressed: () => Future.microtask(() => Navigator.pushReplacementNamed(context, Routes.signInCitizen))
-        ),
+          leading: IconButton(
+              icon: Icon(Icons.arrow_back), onPressed: () => Future.microtask(() => Navigator.pushReplacementNamed(context, Routes.signInCitizen))
+          ),
           title: const Text("Add Citizen")),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
@@ -90,8 +101,9 @@ class CitizenSignupScreen extends ConsumerWidget {
                         formKey.currentState!.save(),
                         ref.read(citizenFormProvider.notifier).state = citizenData,
                         // TODO: Call API with citizenData
+                        createUser()
                       },
-                      Future.microtask(() => Navigator.pushReplacementNamed(context, Routes.signUpCitizenStatus)),
+                      //Future.microtask(() => Navigator.pushReplacementNamed(context, Routes.signUpCitizenStatus)),
                     }/*ref
                           .read(authControllerProvider)
                           .signInWithEmail(

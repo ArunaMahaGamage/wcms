@@ -29,6 +29,10 @@ class CitizenComplainStatusScreen extends ConsumerWidget {
 
       ref.read(citizenSignUpStatusProvider.notifier).state =
       success ? CitizenComplainStatus.success : CitizenComplainStatus.error;
+
+      await Future.delayed(Duration(seconds: 3));
+
+      Navigator.pushReplacementNamed(context, Routes.dashboardCitizen);
     });
 
 

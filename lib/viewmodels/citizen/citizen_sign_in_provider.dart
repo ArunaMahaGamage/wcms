@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final citizenSignupProvider = StateNotifierProvider<CitizenSignInProvider, String>((
+final citizenSignInProvider = StateNotifierProvider<CitizenSignInProvider, String>((
     ref,
     ) {
   return CitizenSignInProvider();
