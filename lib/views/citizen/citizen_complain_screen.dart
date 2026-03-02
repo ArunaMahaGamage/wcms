@@ -6,9 +6,9 @@ import '../../viewmodels/citizen/complaints_provider.dart';
 
 //final complaintsProvider = StateProvider<List<Complain>>((ref) => []);
 
-class ComplainScreen extends ConsumerWidget {
+class CitizenComplainScreen extends ConsumerWidget {
   final _formKey = GlobalKey<FormState>();
-  final _complainIDController = TextEditingController();
+  final _complainTitleController = TextEditingController();
   final _citizenIDController = TextEditingController();
   final _complainController = TextEditingController();
   String _status = "Pending";
@@ -24,9 +24,9 @@ class ComplainScreen extends ConsumerWidget {
           child: ListView(
             children: [
               TextFormField(
-                controller: _complainIDController,
+                controller: _complainTitleController,
                 decoration: InputDecoration(
-                  labelText: "Complaint ID Number",
+                  labelText: "Complaint Title",
                   border: OutlineInputBorder(),
                 ),
                 validator: (value) =>
@@ -49,7 +49,7 @@ class ComplainScreen extends ConsumerWidget {
                   labelText: "Complaint",
                   border: OutlineInputBorder(),
                 ),
-                maxLines: 3,
+                maxLines: 6,
                 validator: (value) =>
                 value == null || value.isEmpty ? "Required" : null,
               ),
@@ -77,7 +77,7 @@ class ComplainScreen extends ConsumerWidget {
                   if (_formKey.currentState!.validate()) {
                     final newComplaint = Complain(
                       id: DateTime.now().millisecondsSinceEpoch,
-                      complainIDNumber: _complainIDController.text,
+                      complainIDNumber: _complainTitleController.text,
                       citizenIDNumber: _citizenIDController.text,
                       complain: _complainController.text,
                       status: _status,

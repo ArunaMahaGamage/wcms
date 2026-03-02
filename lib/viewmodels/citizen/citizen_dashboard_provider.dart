@@ -10,10 +10,11 @@ class DashboardItem {
 
 final citizenDashboardItemsProvider = Provider<List<DashboardItem>>((ref) {
   return [
-    DashboardItem(title: "Complaints", imagePath: ImageLinks.loginScreenImage),
-    DashboardItem(title: "Collection Schedule", imagePath: ImageLinks.loginScreenImage),
+    DashboardItem(title: "Complaint", imagePath: ImageLinks.loginScreenImage),
+    DashboardItem(title: "Track Complaints", imagePath: ImageLinks.loginScreenImage),
     DashboardItem(title: "New Vehicle Routes", imagePath: ImageLinks.loginScreenImage),
     DashboardItem(title: "New Bin", imagePath: ImageLinks.loginScreenImage),
+    DashboardItem(title: "Collection Schedule", imagePath: ImageLinks.loginScreenImage),
     DashboardItem(title: "Notification", imagePath: ImageLinks.loginScreenImage),
     DashboardItem(title: "User Reports", imagePath: ImageLinks.loginScreenImage),
     DashboardItem(title: "Recycling Tips", imagePath: ImageLinks.loginScreenImage),
