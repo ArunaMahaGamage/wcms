@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:wcms/api/citizen/citizen_api_service.dart';
+import 'package:wcms/api/citizen/citizen_sign_in_api_service.dart';
 import 'package:wcms/components/custom_button.dart';
 import 'package:wcms/core/routes.dart';
 import 'package:wcms/models/citizen/citizen.dart';
+import 'package:wcms/models/citizen/citizen_sign_in.dart';
 
 final citizenFormProvider = StateProvider<Map<String, dynamic>>((ref) => {});
 
@@ -19,7 +21,11 @@ class CitizenSignupScreen extends ConsumerWidget {
       final citizen = Citizen.fromMap(citizenData);
       Citizen citizenResponse = await CitizenApiService().createCitizen(citizen);
       if (citizenResponse.idNumber.isNotEmpty) {
-        Future.microtask(() => Navigator.pushReplacementNamed(context, Routes.signUpCitizenStatus));
+        final citizenSignInRequest = CitizenSignIn.fromMap(citizenData);
+        CitizenSignIn citizenSignIn = await CitizenSignInApiService().createCitizenSign(citizenSignInRequest);
+        if (citizenSignIn.idNumber.isNotEmpty) {
+          Future.microtask(() => Navigator.pushReplacementNamed(context, Routes.signUpCitizenStatus));
+        }
       }
       return citizenResponse;
     }
