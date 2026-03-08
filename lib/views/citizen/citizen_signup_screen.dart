@@ -22,7 +22,7 @@ class CitizenSignupScreen extends ConsumerWidget {
       Citizen citizenResponse = await CitizenApiService().createCitizen(citizen);
       if (citizenResponse.idNumber.isNotEmpty) {
         final citizenSignInRequest = CitizenSignIn.fromMap(citizenData);
-        CitizenSignIn citizenSignIn = await CitizenSignInApiService().createCitizenSign(citizenSignInRequest);
+        CitizenSignIn citizenSignIn = await CitizenSignInApiService().createCitizenSignUpdate(citizenSignInRequest);
         if (citizenSignIn.idNumber.isNotEmpty) {
           Future.microtask(() => Navigator.pushReplacementNamed(context, Routes.signUpCitizenStatus));
         }
