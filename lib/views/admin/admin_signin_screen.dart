@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:wcms/api/admin/admin_sign_in_api_service.dart';
+import 'package:wcms/models/admin/admin_sign_in.dart';
 
 import '../../components/custom_button.dart';
 import '../../config/image_links.dart';
 import '../../config/string_values.dart';
 import '../../core/routes.dart';
+
+final adminSignInProvider = StateProvider<Map<String, dynamic>>((ref) => {});
 
 class AdminSignInScreen extends ConsumerWidget {
   const AdminSignInScreen({super.key});
@@ -12,6 +16,18 @@ class AdminSignInScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     //final authState = ref.watch(authProvider);
+    final formKey = GlobalKey<FormState>();
+    final adminSignInData = ref.watch(adminSignInProvider);
+
+    Future<AdminSignIn> signInUser() async {
+      //final citizenSignInData = ref.watch(citizenSignInProvider);
+      final admin = AdminSignIn.fromMap(adminSignInData);
+      AdminSignIn citizenSignInResponse = await AdminSignInApiService().createAdminSign(admin);
+      if (citizenSignInResponse.idNumber.isNotEmpty) {
+        Future.microtask(() => Navigator.pushReplacementNamed(context, Routes.dashboardCitizen));
+      }
+      return citizenSignInResponse;
+    }
 
     // Controllers for email & password
     final emailController = TextEditingController();
@@ -34,26 +50,36 @@ class AdminSignInScreen extends ConsumerWidget {
                 fit: BoxFit.cover,
               ),
               const SizedBox(height: 50),
-              // Email field
-              TextField(
-                controller: emailController,
-                decoration: const InputDecoration(
-                  labelText: 'Email',
-                  prefixIcon: Icon(Icons.email),
-                ),
-              ),
-              const SizedBox(height: 12),
+              Form(
+                key: formKey,
+                child: Column(
+                  children: [
+                    // Email field
+                    TextFormField(
+                      decoration: const InputDecoration(
+                        labelText: 'Email',
+                        prefixIcon: Icon(Icons.email),
+                      ),
+                      onSaved: (val) => adminSignInData["Email"] = val,
+                      validator: (val) => val!.isEmpty ? "Required" : null,
+                    ),
 
-              // Password field
-              TextField(
-                controller: passwordController,
-                obscureText: true,
-                decoration: const InputDecoration(
-                  labelText: 'Password',
-                  prefixIcon: Icon(Icons.lock),
+                    const SizedBox(height: 12),
+
+                    // Password field
+                    TextFormField(
+                      decoration: const InputDecoration(
+                        labelText: 'Password',
+                        prefixIcon: Icon(Icons.lock),
+                      ),
+                      onSaved: (val) => adminSignInData["Password"] = val,
+                      validator: (val) => val!.isEmpty ? "Required" : null,
+                    ),
+
+                    const SizedBox(height: 20),
+                  ],
                 ),
               ),
-              const SizedBox(height: 20),
 
               // Auth state handling
               Column(
@@ -64,7 +90,12 @@ class AdminSignInScreen extends ConsumerWidget {
                     child: CustomButton(
                         label: 'Login',
                         onPressed: () => {
-                          Future.microtask(() => Navigator.pushReplacementNamed(context, Routes.dashboardAdmin))
+                          if (formKey.currentState!.validate()) {
+                            formKey.currentState!.save(),
+                            ref.read(adminSignInProvider.notifier).state = adminSignInData,
+                            // TODO: Call API with citizenData
+                            signInUser()
+                          },
                         }/*ref
                           .read(authControllerProvider)
                           .signInWithEmail(
@@ -90,10 +121,10 @@ class AdminSignInScreen extends ConsumerWidget {
                     width: double.infinity,
                     child: InkWell(
                       onTap: () {
-                        //Future.microtask(() => Navigator.pushReplacementNamed(context, Routes.signUp));
+                        Future.microtask(() => Navigator.pushReplacementNamed(context, Routes.signUpCitizen));
                       },
                       child: const Text(
-                        "Forgot password",
+                        "Don't have an account? Register here",
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: 16,
