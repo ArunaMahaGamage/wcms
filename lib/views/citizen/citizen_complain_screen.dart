@@ -21,7 +21,7 @@ class CitizenComplainScreen extends ConsumerWidget {
 
     Future<Complain> complainCitizen(Complain complainRequest) async {
       //final citizenSignInData = ref.watch(citizenSignInProvider);
-      Complain complain = await CitizenComplainApiService().createCitizenSign(complainRequest);
+      Complain complain = await CitizenComplainApiService().createCitizenComplain(complainRequest);
       if (complain.complainIDNumber.isNotEmpty) {
         Future.microtask(() => Navigator.pushReplacementNamed(context, Routes.complaintCitizenStatus));
       }
@@ -93,7 +93,7 @@ class CitizenComplainScreen extends ConsumerWidget {
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
                     final newComplaint = Complain(
-                      id: DateTime.now().millisecondsSinceEpoch,
+                      //id: DateTime.now().millisecondsSinceEpoch,
                       complainIDNumber: _complainTitleController.text,
                       citizenIDNumber: _citizenIDController.text,
                       complain: _complainController.text,
@@ -106,7 +106,7 @@ class CitizenComplainScreen extends ConsumerWidget {
                       ...ref.read(complaintsProvider),
                       newComplaint,
                     ];*/
-                    ref.read(complainListProvider.notifier).addComplaint(newComplaint);
+                    //ref.read(complainListProvider.notifier).addComplaint(newComplaint);
 
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(content: Text("Complaint Submitted")),

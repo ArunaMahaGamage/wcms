@@ -9,10 +9,10 @@ class CitizenComplainApiService {
   final Dio _dio = BaseApiService().getDio();
 
   // POST: Create a new citizen
-  Future<CitizenSignIn> createCitizenSignUpdate(CitizenSignIn citizenSignIn) async {
+  Future<Complain> createCitizenComplain(Complain complain) async {
     try {
-      final response = await _dio.post('api/citizen-sign-in/create-citizen-sign-in', data: citizenSignIn.toJson());
-      return CitizenSignIn.fromJson(response.data);
+      final response = await _dio.post('/api/complain/create-complain', data: complain.toJson());
+      return Complain.fromJson(response.data);
     } on DioException catch (e) {
       throw _handleError(e);
     }

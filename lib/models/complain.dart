@@ -1,12 +1,12 @@
 class Complain {
-  final int id;
+  //final int id;
   final String complainIDNumber;
   final String citizenIDNumber;
   final String complain;
   final String status;
 
   Complain({
-    required this.id,
+    //required this.id,
     required this.complainIDNumber,
     required this.citizenIDNumber,
     required this.complain,
@@ -15,7 +15,7 @@ class Complain {
 
   factory Complain.fromJson(Map<String, dynamic> json) {
     return Complain(
-      id: json['id'],
+      //id: json['id'],
       complainIDNumber: json['complainIDNumber'],
       citizenIDNumber: json['citizenIDNumber'],
       complain: json['complain'],
@@ -25,7 +25,7 @@ class Complain {
 
   Map<String, dynamic> toJson() {
     return {
-      'id': id,
+      //'id': id,
       'complainIDNumber': complainIDNumber,
       'citizenIDNumber': citizenIDNumber,
       'complain': complain,
