@@ -12,4 +12,24 @@ class Complain {
     required this.complain,
     required this.status,
   });
+
+  factory Complain.fromJson(Map<String, dynamic> json) {
+    return Complain(
+      id: json['id'],
+      complainIDNumber: json['complainIDNumber'],
+      citizenIDNumber: json['citizenIDNumber'],
+      complain: json['complain'],
+      status: json['status'],
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'complainIDNumber': complainIDNumber,
+      'citizenIDNumber': citizenIDNumber,
+      'complain': complain,
+      'status': status,
+    };
+  }
 }

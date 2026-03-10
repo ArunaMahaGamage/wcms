@@ -1,21 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:wcms/api/citizen/citizen_complain_api_service.dart';
 import 'package:wcms/core/routes.dart';
 
 import '../../models/complain.dart';
 import '../../viewmodels/citizen/complaints_provider.dart';
 
 //final complaintsProvider = StateProvider<List<Complain>>((ref) => []);
+final complaintsProvider = StateProvider<Map<String, dynamic>>((ref) => {});
 
 class CitizenComplainScreen extends ConsumerWidget {
   final _formKey = GlobalKey<FormState>();
   final _complainTitleController = TextEditingController();
   final _citizenIDController = TextEditingController();
   final _complainController = TextEditingController();
-  String _status = "Pending";
+  String _status = "New";
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+
+    Future<Complain> complainCitizen(Complain complainRequest) async {
+      //final citizenSignInData = ref.watch(citizenSignInProvider);
+      Complain complain = await CitizenComplainApiService().createCitizenSign(complainRequest);
+      if (complain.complainIDNumber.isNotEmpty) {
+        Future.microtask(() => Navigator.pushReplacementNamed(context, Routes.complaintCitizenStatus));
+      }
+      return complain;
+    }
+
     return Scaffold(
       appBar: AppBar(
           leading: IconButton(
@@ -61,7 +73,7 @@ class CitizenComplainScreen extends ConsumerWidget {
               SizedBox(height: 16),
               DropdownButtonFormField<String>(
                 value: _status,
-                items: ["Pending", "In Progress", "Resolved"]
+                items: ["New", "Pending", "In Progress", "Resolved"]
                     .map((status) => DropdownMenuItem(
                   value: status,
                   child: Text(status),
@@ -88,6 +100,7 @@ class CitizenComplainScreen extends ConsumerWidget {
                       status: _status,
                     );
 
+                    complainCitizen(newComplaint);
                     // Update StateProvider
                     /*ref.read(complaintsProvider.notifier).state = [
                       ...ref.read(complaintsProvider),
@@ -98,7 +111,6 @@ class CitizenComplainScreen extends ConsumerWidget {
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(content: Text("Complaint Submitted")),
                     );
-                    Future.microtask(() => Navigator.pushReplacementNamed(context, Routes.complaintCitizenStatus));
                   }
                 },
               ),
