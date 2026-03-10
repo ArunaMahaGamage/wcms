@@ -20,7 +20,7 @@ class CitizenSignInApiService {
   // POST: Check sign in register citizen
   Future<CitizenSignIn> createCitizenSign(CitizenSignIn citizenSignIn) async {
     try {
-      final response = await _dio.post('api/citizen-sign-in/read-citizen-sign-in', data: citizenSignIn.toJson());
+      final response = await _dio.post('/api/citizen-sign-in/read-citizen-sign-in', data: citizenSignIn.toJson());
       return CitizenSignIn.fromJson(response.data);
     } on DioException catch (e) {
       throw _handleError(e);

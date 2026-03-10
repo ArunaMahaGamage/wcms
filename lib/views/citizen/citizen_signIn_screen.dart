@@ -60,7 +60,7 @@ class CitizenSignInScreen extends ConsumerWidget {
                         labelText: 'Email',
                         prefixIcon: Icon(Icons.email),
                       ),
-                      onSaved: (val) => citizenSignInData["Email"] = val,
+                      onSaved: (val) => citizenSignInData["userID"] = val,
                       validator: (val) => val!.isEmpty ? "Required" : null,
                     ),
 
@@ -72,7 +72,7 @@ class CitizenSignInScreen extends ConsumerWidget {
                         labelText: 'Password',
                         prefixIcon: Icon(Icons.lock),
                       ),
-                      onSaved: (val) => citizenSignInData["Password"] = val,
+                      onSaved: (val) => citizenSignInData["password"] = val,
                       validator: (val) => val!.isEmpty ? "Required" : null,
                     ),
 
