@@ -65,7 +65,7 @@ class CitizenDashboardScreen extends ConsumerWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Expanded(
-                      child: Image.network(
+                      child: Image.asset(
                         item.imagePath,
                         fit: BoxFit.contain,
                       ),

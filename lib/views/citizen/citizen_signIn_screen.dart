@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:wcms/api/citizen/citizen_sign_in_api_service.dart';
+import 'package:wcms/config/image_path.dart';
 import 'package:wcms/models/citizen/citizen_sign_in.dart';
 
 import '../../components/custom_button.dart';
@@ -43,10 +44,14 @@ class CitizenSignInScreen extends ConsumerWidget {
               const SizedBox(height: 50),
               Center(child: Text(StringValues.appName, style: Theme.of(context).textTheme.headlineSmall)),
               const SizedBox(height: 50),
-              Image.network(
+              /*Image.network(
                 ImageLinks.loginScreenImage,
                 //width: 300,
                 //height: 200,
+                fit: BoxFit.cover,
+              ),*/
+              Image.asset(
+                ImagePaths.loginScreenImage,
                 fit: BoxFit.cover,
               ),
               const SizedBox(height: 50),

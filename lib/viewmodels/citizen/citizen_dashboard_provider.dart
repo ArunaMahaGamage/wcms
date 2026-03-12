@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:wcms/config/image_links.dart';
+import 'package:wcms/config/image_path.dart';
 
 class DashboardItem {
   final String title;
@@ -10,17 +11,17 @@ class DashboardItem {
 
 final citizenDashboardItemsProvider = Provider<List<DashboardItem>>((ref) {
   return [
-    DashboardItem(title: "Complaint", imagePath: ImageLinks.citizenDashboardComplain),
-    DashboardItem(title: "Track Complaints", imagePath: ImageLinks.citizenDashboardTrackComplain),
-    DashboardItem(title: "New Vehicle Routes", imagePath: ImageLinks.citizenDashboardNewVehicleRoutes),
-    DashboardItem(title: "New Bin", imagePath: ImageLinks.citizenDashboardNewBin),
-    DashboardItem(title: "Collection Schedule", imagePath: ImageLinks.citizenDashboardCollectionSchedule),
-    DashboardItem(title: "Notification", imagePath: ImageLinks.citizenDashboardNotification),
-    DashboardItem(title: "User Reports", imagePath: ImageLinks.loginScreenImage),
-    DashboardItem(title: "Recycling Tips", imagePath: ImageLinks.loginScreenImage),
-    DashboardItem(title: "Waste Statistics", imagePath: ImageLinks.loginScreenImage),
-    DashboardItem(title: "Policy Updates", imagePath: ImageLinks.loginScreenImage),
-    DashboardItem(title: "Environmental Impact", imagePath: ImageLinks.loginScreenImage),
-    DashboardItem(title: "Environmental Law", imagePath: ImageLinks.citizenDashboardEnvironmentalLaw),
+    DashboardItem(title: "Complaint", imagePath: ImagePaths.citizenDashboardComplain),
+    DashboardItem(title: "Track Complaints", imagePath: ImagePaths.citizenDashboardTrackComplain),
+    DashboardItem(title: "New Vehicle Routes", imagePath: ImagePaths.citizenDashboardNewVehicleRoutes),
+    DashboardItem(title: "New Bin", imagePath: ImagePaths.citizenDashboardNewBin),
+    DashboardItem(title: "Collection Schedule", imagePath: ImagePaths.citizenDashboardCollectionSchedule),
+    DashboardItem(title: "Notification", imagePath: ImagePaths.citizenDashboardNotification),
+    DashboardItem(title: "User Reports", imagePath: ImagePaths.loginScreenImage),
+    DashboardItem(title: "Recycling Tips", imagePath: ImagePaths.loginScreenImage),
+    DashboardItem(title: "Waste Statistics", imagePath: ImagePaths.loginScreenImage),
+    DashboardItem(title: "Policy Updates", imagePath: ImagePaths.citizenDashboardPolicyUpdates),
+    DashboardItem(title: "Environmental Impact", imagePath: ImagePaths.loginScreenImage),
+    DashboardItem(title: "Environmental Law", imagePath: ImagePaths.citizenDashboardEnvironmentalLaw),
   ];
 });

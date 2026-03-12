@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:wcms/config/image_path.dart';
 
 import '../../config/image_links.dart';
 import '../../config/string_values.dart';
@@ -21,10 +22,14 @@ class RoleSelectorScreen extends ConsumerWidget {
             Center(child: Text(StringValues.appName, style: Theme.of(context).textTheme.headlineSmall)),
             const SizedBox(height: 50),
             //const SizedBox(height: 150),
-            Image.network(
+            /*Image.network(
               ImageLinks.loginScreenImage,
               //width: 150,
               //height: 100,
+              fit: BoxFit.cover,
+            ),*/
+            Image.asset(
+              ImagePaths.roleSelectorScreenImage,
               fit: BoxFit.cover,
             ),
             const SizedBox(height: 50),
