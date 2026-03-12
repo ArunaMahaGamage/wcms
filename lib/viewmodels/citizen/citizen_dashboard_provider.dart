@@ -18,10 +18,10 @@ final citizenDashboardItemsProvider = Provider<List<DashboardItem>>((ref) {
     DashboardItem(title: "Collection Schedule", imagePath: ImagePaths.citizenDashboardCollectionSchedule),
     DashboardItem(title: "Notification", imagePath: ImagePaths.citizenDashboardNotification),
     DashboardItem(title: "User Reports", imagePath: ImagePaths.loginScreenImage),
-    DashboardItem(title: "Recycling Tips", imagePath: ImagePaths.loginScreenImage),
+    DashboardItem(title: "Recycling Tips", imagePath: ImagePaths.citizenDashboardRecyclingTips),
     DashboardItem(title: "Waste Statistics", imagePath: ImagePaths.loginScreenImage),
     DashboardItem(title: "Policy Updates", imagePath: ImagePaths.citizenDashboardPolicyUpdates),
-    DashboardItem(title: "Environmental Impact", imagePath: ImagePaths.loginScreenImage),
+    DashboardItem(title: "Environmental Impact", imagePath: ImagePaths.citizenDashboardEnvironmentalImpact),
     DashboardItem(title: "Environmental Law", imagePath: ImagePaths.citizenDashboardEnvironmentalLaw),
   ];
 });

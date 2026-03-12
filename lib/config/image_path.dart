@@ -11,7 +11,8 @@ class ImagePaths {
   static const citizenDashboardCollectionSchedule = 'assets/images/collection_schedule.png';
   static const citizenDashboardNotification = 'assets/images/notification.jpg';
 
+  static const citizenDashboardRecyclingTips = 'assets/images/recycling_tips.jpeg';
   static const citizenDashboardPolicyUpdates = 'assets/images/policy_update.jpg';
-
+  static const citizenDashboardEnvironmentalImpact = 'assets/images/environmental_impact.jpg';
   static const citizenDashboardEnvironmentalLaw = 'assets/images/environmental_law.webp';
 }
