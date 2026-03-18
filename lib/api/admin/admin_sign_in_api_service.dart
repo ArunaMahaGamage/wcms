@@ -18,9 +18,10 @@ class AdminSignInApiService {
   }
 
   // POST: Check sign in register citizen
-  Future<AdminSignIn> createAdminSign(AdminSignIn citizenSignIn) async {
+  Future<AdminSignIn> readAdminSign(AdminSignIn adminSignIn) async {
     try {
-      final response = await _dio.post('api/citizen-sign-in/read-citizen-sign-in', data: citizenSignIn.toJson());
+      final response = await _dio.post('/api/administrator-sign-in/read-administrator-sign-in', data: adminSignIn.toJson());
+      AdminSignIn.fromJson(response.data);
       return AdminSignIn.fromJson(response.data);
     } on DioException catch (e) {
       throw _handleError(e);

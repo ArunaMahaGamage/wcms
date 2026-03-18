@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:wcms/api/admin/admin_sign_in_api_service.dart';
+import 'package:wcms/config/image_path.dart';
 import 'package:wcms/models/admin/admin_sign_in.dart';
 
 import '../../components/custom_button.dart';
@@ -22,9 +23,9 @@ class AdminSignInScreen extends ConsumerWidget {
     Future<AdminSignIn> signInUser() async {
       //final citizenSignInData = ref.watch(citizenSignInProvider);
       final admin = AdminSignIn.fromMap(adminSignInData);
-      AdminSignIn citizenSignInResponse = await AdminSignInApiService().createAdminSign(admin);
+      AdminSignIn citizenSignInResponse = await AdminSignInApiService().readAdminSign(admin);
       if (citizenSignInResponse.idNumber.isNotEmpty) {
-        Future.microtask(() => Navigator.pushReplacementNamed(context, Routes.dashboardCitizen));
+        Future.microtask(() => Navigator.pushReplacementNamed(context, Routes.dashboardAdmin));
       }
       return citizenSignInResponse;
     }
@@ -43,10 +44,14 @@ class AdminSignInScreen extends ConsumerWidget {
               const SizedBox(height: 50),
               Center(child: Text(StringValues.appName, style: Theme.of(context).textTheme.headlineSmall)),
               const SizedBox(height: 50),
-              Image.network(
+              /*Image.network(
                 ImageLinks.loginScreenImage,
                 //width: 300,
                 //height: 200,
+                fit: BoxFit.cover,
+              ),*/
+              Image.asset(
+                ImagePaths.loginScreenImage,
                 fit: BoxFit.cover,
               ),
               const SizedBox(height: 50),
@@ -60,7 +65,7 @@ class AdminSignInScreen extends ConsumerWidget {
                         labelText: 'Email',
                         prefixIcon: Icon(Icons.email),
                       ),
-                      onSaved: (val) => adminSignInData["Email"] = val,
+                      onSaved: (val) => adminSignInData["userID"] = val,
                       validator: (val) => val!.isEmpty ? "Required" : null,
                     ),
 
@@ -72,7 +77,7 @@ class AdminSignInScreen extends ConsumerWidget {
                         labelText: 'Password',
                         prefixIcon: Icon(Icons.lock),
                       ),
-                      onSaved: (val) => adminSignInData["Password"] = val,
+                      onSaved: (val) => adminSignInData["password"] = val,
                       validator: (val) => val!.isEmpty ? "Required" : null,
                     ),
 

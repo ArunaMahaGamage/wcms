@@ -23,7 +23,7 @@ class CitizenSignInScreen extends ConsumerWidget {
     Future<CitizenSignIn> signInUser() async {
       //final citizenSignInData = ref.watch(citizenSignInProvider);
       final citizen = CitizenSignIn.fromMap(citizenSignInData);
-      CitizenSignIn citizenSignInResponse = await CitizenSignInApiService().createCitizenSign(citizen);
+      CitizenSignIn citizenSignInResponse = await CitizenSignInApiService().readCitizenSign(citizen);
       if (citizenSignInResponse.idNumber.isNotEmpty) {
         Future.microtask(() => Navigator.pushReplacementNamed(context, Routes.dashboardCitizen));
       }

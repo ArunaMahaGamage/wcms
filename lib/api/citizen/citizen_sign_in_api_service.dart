@@ -18,7 +18,7 @@ class CitizenSignInApiService {
   }
 
   // POST: Check sign in register citizen
-  Future<CitizenSignIn> createCitizenSign(CitizenSignIn citizenSignIn) async {
+  Future<CitizenSignIn> readCitizenSign(CitizenSignIn citizenSignIn) async {
     try {
       final response = await _dio.post('/api/citizen-sign-in/read-citizen-sign-in', data: citizenSignIn.toJson());
       return CitizenSignIn.fromJson(response.data);
