@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:wcms/api/driver/driver_sign_in_api_service.dart';
+import 'package:wcms/config/image_path.dart';
 import 'package:wcms/models/driver/driver_sign_in.dart';
 
 import '../../components/custom_button.dart';
@@ -43,10 +44,8 @@ class DriverSignInScreen extends ConsumerWidget {
               const SizedBox(height: 50),
               Center(child: Text(StringValues.appName, style: Theme.of(context).textTheme.headlineSmall)),
               const SizedBox(height: 50),
-              Image.network(
-                ImageLinks.loginScreenImage,
-                //width: 300,
-                //height: 200,
+              Image.asset(
+                ImagePaths.loginScreenImage,
                 fit: BoxFit.cover,
               ),
               const SizedBox(height: 50),
@@ -119,7 +118,7 @@ class DriverSignInScreen extends ConsumerWidget {
                       ),*/
                   SizedBox(
                     width: double.infinity,
-                    child: InkWell(
+                    /*child: InkWell(
                       onTap: () {
                         Future.microtask(() => Navigator.pushReplacementNamed(context, Routes.signUpCitizen));
                       },
@@ -132,7 +131,7 @@ class DriverSignInScreen extends ConsumerWidget {
                           color: Colors.blue,
                         ),
                       ),
-                    ),
+                    ),*/
                   ),
                   const SizedBox(height: 8),
 

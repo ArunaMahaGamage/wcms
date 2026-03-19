@@ -124,7 +124,7 @@ class AdminSignInScreen extends ConsumerWidget {
                       ),*/
                   SizedBox(
                     width: double.infinity,
-                    child: InkWell(
+                    /*child: InkWell(
                       onTap: () {
                         Future.microtask(() => Navigator.pushReplacementNamed(context, Routes.signUpCitizen));
                       },
@@ -137,7 +137,7 @@ class AdminSignInScreen extends ConsumerWidget {
                           color: Colors.blue,
                         ),
                       ),
-                    ),
+                    ),*/
                   ),
                   const SizedBox(height: 8),
 
