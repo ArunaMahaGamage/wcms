@@ -24,7 +24,7 @@ class DriverSignInScreen extends ConsumerWidget {
       //final citizenSignInData = ref.watch(citizenSignInProvider);
       final admin = DriverSignIn.fromMap(adminSignInData);
       DriverSignIn citizenSignInResponse = await DriverSignInApiService().createAdminSign(admin);
-      if (citizenSignInResponse.idNumber.isNotEmpty) {
+      if (citizenSignInResponse.driverLicenceNumber.isNotEmpty) {
         Future.microtask(() => Navigator.pushReplacementNamed(context, Routes.dashboardCitizen));
       }
       return citizenSignInResponse;
@@ -59,7 +59,7 @@ class DriverSignInScreen extends ConsumerWidget {
                         labelText: 'Email',
                         prefixIcon: Icon(Icons.email),
                       ),
-                      onSaved: (val) => adminSignInData["Email"] = val,
+                      onSaved: (val) => adminSignInData["userId"] = val,
                       validator: (val) => val!.isEmpty ? "Required" : null,
                     ),
 
@@ -71,7 +71,7 @@ class DriverSignInScreen extends ConsumerWidget {
                         labelText: 'Password',
                         prefixIcon: Icon(Icons.lock),
                       ),
-                      onSaved: (val) => adminSignInData["Password"] = val,
+                      onSaved: (val) => adminSignInData["password"] = val,
                       validator: (val) => val!.isEmpty ? "Required" : null,
                     ),
 

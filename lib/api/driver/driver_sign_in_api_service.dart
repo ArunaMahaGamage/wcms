@@ -19,7 +19,7 @@ class DriverSignInApiService {
   // POST: Check sign in register citizen
   Future<DriverSignIn> createAdminSign(DriverSignIn driverSignIn) async {
     try {
-      final response = await _dio.post('api/citizen-sign-in/read-citizen-sign-in', data: driverSignIn.toJson());
+      final response = await _dio.post('/api/driver-sign-in/read', data: driverSignIn.toJson());
       return DriverSignIn.fromJson(response.data);
     } on DioException catch (e) {
       throw _handleError(e);
