@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:wcms/api/helper/helper_sign_in_api_service.dart';
+import 'package:wcms/config/image_path.dart';
 import 'package:wcms/models/helper/helper_sign_in.dart';
 
 import '../../components/custom_button.dart';
@@ -17,9 +18,6 @@ class HelperSignInScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     //final authState = ref.watch(authProvider);
 
-    // Controllers for email & password
-    final emailController = TextEditingController();
-    final passwordController = TextEditingController();
 
     final formKey = GlobalKey<FormState>();
     final adminSignInData = ref.watch(helperSignInProvider);
@@ -28,7 +26,7 @@ class HelperSignInScreen extends ConsumerWidget {
       //final citizenSignInData = ref.watch(citizenSignInProvider);
       final admin = HelperSignIn.fromMap(adminSignInData);
       HelperSignIn helperSignInResponse = await HelperSignInApiService().createHelperSign(admin);
-      if (helperSignInResponse.userID.isNotEmpty) {
+      if (helperSignInResponse.userId.isNotEmpty) {
         Future.microtask(() => Navigator.pushReplacementNamed(context, Routes.dashboardDriver));
       }
       return helperSignInResponse;
@@ -44,31 +42,30 @@ class HelperSignInScreen extends ConsumerWidget {
               const SizedBox(height: 50),
               Center(child: Text(StringValues.appName, style: Theme.of(context).textTheme.headlineSmall)),
               const SizedBox(height: 50),
-              Image.network(
-                ImageLinks.loginScreenImage,
-                //width: 300,
-                //height: 200,
+              Image.asset(
+                ImagePaths.loginScreenImage,
                 fit: BoxFit.cover,
               ),
               const SizedBox(height: 50),
               // Email field
-              TextField(
-                controller: emailController,
+              TextFormField(
                 decoration: const InputDecoration(
                   labelText: 'Email',
                   prefixIcon: Icon(Icons.email),
                 ),
+                onSaved: (val) => adminSignInData["userId"] = val,
+                validator: (val) => val!.isEmpty ? "Required" : null,
               ),
               const SizedBox(height: 12),
 
               // Password field
-              TextField(
-                controller: passwordController,
-                obscureText: true,
+              TextFormField(
                 decoration: const InputDecoration(
                   labelText: 'Password',
                   prefixIcon: Icon(Icons.lock),
                 ),
+                onSaved: (val) => adminSignInData["password"] = val,
+                validator: (val) => val!.isEmpty ? "Required" : null,
               ),
               const SizedBox(height: 20),
 
