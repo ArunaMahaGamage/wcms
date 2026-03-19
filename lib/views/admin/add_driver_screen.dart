@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:wcms/core/routes.dart';
 
 final driverProvider = StateProvider<Map<String, dynamic>>((ref) => {});
 
@@ -12,7 +13,11 @@ class AddDriverScreen extends ConsumerWidget {
     final driverData = ref.watch(driverProvider);
 
     return Scaffold(
-      appBar: AppBar(title: const Text("Add Driver")),
+      appBar: AppBar(
+          leading: IconButton(
+              icon: Icon(Icons.arrow_back), onPressed: () => Future.microtask(() => Navigator.pushReplacementNamed(context, Routes.dashboardAdmin))
+          ),
+          title: const Text("Add Driver")),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Form(

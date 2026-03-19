@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:wcms/core/routes.dart';
 
 final adminSignupProvider = StateProvider<Map<String, dynamic>>((ref) => {});
 
-class addAdminScreen extends ConsumerWidget {
-  const addAdminScreen({Key? key}) : super(key: key);
+class AddAdminScreen extends ConsumerWidget {
+  const AddAdminScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -12,7 +13,11 @@ class addAdminScreen extends ConsumerWidget {
     final signupData = ref.watch(adminSignupProvider);
 
     return Scaffold(
-      appBar: AppBar(title: const Text("Administrator Signup")),
+      appBar: AppBar(
+          leading: IconButton(
+              icon: Icon(Icons.arrow_back), onPressed: () => Future.microtask(() => Navigator.pushReplacementNamed(context, Routes.dashboardAdmin))
+          ),
+          title: const Text("Add Administrator")),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Form(

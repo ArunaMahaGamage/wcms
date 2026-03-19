@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:wcms/core/routes.dart';
 
 final vehicleFormProvider = StateProvider<Map<String, dynamic>>((ref) => {});
 
@@ -12,7 +13,11 @@ class AddVehicleScreen extends ConsumerWidget {
     final vehicleData = ref.watch(vehicleFormProvider);
 
     return Scaffold(
-      appBar: AppBar(title: const Text("Add Vehicle")),
+      appBar: AppBar(
+          leading: IconButton(
+              icon: Icon(Icons.arrow_back), onPressed: () => Future.microtask(() => Navigator.pushReplacementNamed(context, Routes.dashboardAdmin))
+          ),
+          title: const Text("Add Vehicle")),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Form(

@@ -1,3 +1,5 @@
+import 'package:wcms/views/admin/add_admin_screen.dart';
+
 class Routes {
   static const splash = '/splash';
   static const userSelector = '/user_selector';
@@ -5,6 +7,16 @@ class Routes {
   // Admin
   static const signInAdmin = '/signIn_admin';
   static const dashboardAdmin = '/dashboard_admin';
+  static const allComplainAdmin = '/all_complain_admin';
+  static const currentSchedulesAdmin = '/current_schedules_admin';
+  static const schedulesRoutesAdmin = '/schedules_routes_admin';
+  static const addAdmin = '/add_admin';
+  static const addDrivers = '/add_drivers';
+  static const addHelpers = '/add_helpers';
+  static const addVehicles = '/add_vehicles';
+  static const reports = '/reports';
+
+
 
   // Citizen
   static const signUpCitizen = '/sign_up_citizen';

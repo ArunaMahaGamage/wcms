@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:wcms/viewmodels/settings_provider.dart';
+import 'package:wcms/views/admin/add_driver_screen.dart';
+import 'package:wcms/views/admin/add_helper_screen.dart';
+import 'package:wcms/views/admin/add_vehicle_screen.dart';
 import 'package:wcms/views/admin/admin_dashboard_screen.dart';
 import 'package:wcms/views/admin/admin_signin_screen.dart';
 import 'package:wcms/views/citizen/citizen_complain_list_screen.dart';
@@ -18,6 +21,7 @@ import 'package:wcms/views/helper/helper_signin_screen.dart';
 import 'package:wcms/views/onboarding_screen.dart';
 import 'core/routes.dart';
 import 'models/settings.dart';
+import 'views/admin/add_admin_screen.dart';
 import 'views/common/splash_screen.dart';
 
 
@@ -53,6 +57,11 @@ class App extends ConsumerWidget {
         // Admin
         Routes.signInAdmin: (_) => const AdminSignInScreen(),
         Routes.dashboardAdmin: (_) => const AdminDashboardScreen(),
+
+        Routes.addAdmin: (_) => const AddAdminScreen(),
+        Routes.addDrivers: (_) => const AddDriverScreen(),
+        Routes.addHelpers: (_) => const AddHelperScreen(),
+        Routes.addVehicles: (_) => const AddVehicleScreen(),
         // Citizen
         Routes.signUpCitizen: (_) => const CitizenSignupScreen(),
         Routes.signUpCitizenStatus: (_) => const CitizenSignupStatusScreen(),
