@@ -13,6 +13,7 @@ class Citizen {
   final String provincial;
   final String district;
   final String divisionalSecretaryDivisions;
+  final String password;
 
   Citizen({
     required this.firstName,
@@ -26,6 +27,7 @@ class Citizen {
     required this.provincial,
     required this.district,
     required this.divisionalSecretaryDivisions,
+    required this.password,
   });
 
   // Convert JSON to Citizen Object
@@ -42,6 +44,7 @@ class Citizen {
       provincial: json['provincial'] ?? '',
       district: json['district'] ?? '',
       divisionalSecretaryDivisions: json['divisionalSecretaryDivisions'] ?? '',
+      password: json['password'] ?? '',
     );
   }
 
@@ -59,6 +62,7 @@ class Citizen {
       'provincial': provincial,
       'district': district,
       'divisionalSecretaryDivisions': divisionalSecretaryDivisions,
+      'password': password,
     };
   }
 
@@ -66,13 +70,13 @@ class Citizen {
   factory Citizen.fromMap(Map<String, dynamic> json) {
     return Citizen(
         firstName: json['firstName'] ?? '', lastName: json['lastName'] ?? '', idNumber: json['idNumber'] ?? '',// Note: 'idnumber' matches your query
-        dateOfBirth: json['dateOfBirth'] ?? '', gender: json['gender'] ?? '', address: json['address'] ?? '', email: json['email'] ?? '', mobileNumber: json['mobileNumber'] ?? '', provincial: json['provincial'] ?? '', district: json['district'] ?? '', divisionalSecretaryDivisions: json['divisionalSecretaryDivisions'] ?? '');
+        dateOfBirth: json['dateOfBirth'] ?? '', gender: json['gender'] ?? '', address: json['address'] ?? '', email: json['email'] ?? '', mobileNumber: json['mobileNumber'] ?? '', provincial: json['provincial'] ?? '', district: json['district'] ?? '', divisionalSecretaryDivisions: json['divisionalSecretaryDivisions'] ?? '', password: json['password'] ?? '');
   }
 
   // IMPORTANT: copyWith for immutability
   Citizen copyWith({
     String? firstName, String? lastName, String? idNumber, String? dateOfBirth, String? gender, String? address, String? email, String? mobileNumber, String? provincial, String? district, String? divisionalSecretaryDivisions}) {
     return Citizen(
-        firstName: firstName ?? this.firstName, lastName: lastName ?? this.lastName, idNumber: idNumber ?? this.idNumber, dateOfBirth: dateOfBirth ?? this.dateOfBirth, gender: gender ?? this.gender, address: address ?? this.address, email: email ?? this.email, mobileNumber: mobileNumber ?? this.mobileNumber, provincial: provincial ?? this.provincial, district: district ?? this.district, divisionalSecretaryDivisions: divisionalSecretaryDivisions ?? this.divisionalSecretaryDivisions);
+        firstName: firstName ?? this.firstName, lastName: lastName ?? this.lastName, idNumber: idNumber ?? this.idNumber, dateOfBirth: dateOfBirth ?? this.dateOfBirth, gender: gender ?? this.gender, address: address ?? this.address, email: email ?? this.email, mobileNumber: mobileNumber ?? this.mobileNumber, provincial: provincial ?? this.provincial, district: district ?? this.district, divisionalSecretaryDivisions: divisionalSecretaryDivisions ?? this.divisionalSecretaryDivisions, password: password ?? this.password);
   }
 }

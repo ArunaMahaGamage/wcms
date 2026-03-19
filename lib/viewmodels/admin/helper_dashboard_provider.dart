@@ -12,7 +12,7 @@ class DashboardItem {
 final helperDashboardItemsProvider = Provider<List<DashboardItem>>((ref) {
   return [
     DashboardItem(title: "Work feedback", imagePath: ImagePaths.loginScreenImage),
-    DashboardItem(title: "Drivers Notification", imagePath: ImagePaths.loginScreenImage),
-    DashboardItem(title: "Drivers Profile", imagePath: ImagePaths.loginScreenImage),
+    DashboardItem(title: "Helper Notification", imagePath: ImagePaths.loginScreenImage),
+    DashboardItem(title: "Helper Profile", imagePath: ImagePaths.loginScreenImage),
   ];
 });

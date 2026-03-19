@@ -21,11 +21,13 @@ class CitizenSignupScreen extends ConsumerWidget {
       final citizen = Citizen.fromMap(citizenData);
       Citizen citizenResponse = await CitizenApiService().createCitizen(citizen);
       if (citizenResponse.idNumber.isNotEmpty) {
-        final citizenSignInRequest = CitizenSignIn.fromMap(citizenData);
+        Future.microtask(() => Navigator.pushReplacementNamed(context, Routes.signUpCitizenStatus));
+
+        /*final citizenSignInRequest = CitizenSignIn.fromMap(citizenData);
         CitizenSignIn citizenSignIn = await CitizenSignInApiService().createCitizenSignUpdate(citizenSignInRequest);
         if (citizenSignIn.idNumber.isNotEmpty) {
-          Future.microtask(() => Navigator.pushReplacementNamed(context, Routes.signUpCitizenStatus));
-        }
+
+        }*/
       }
       return citizenResponse;
     }
@@ -95,6 +97,12 @@ class CitizenSignupScreen extends ConsumerWidget {
                     labelText: "Divisional Secretary Divisions"),
                 onSaved: (val) =>
                 citizenData["divisionalSecretaryDivisions"] = val,
+              ),
+              TextFormField(
+                decoration: const InputDecoration(
+                    labelText: "Password"),
+                onSaved: (val) =>
+                citizenData["password"] = val,
               ),
               const SizedBox(height: 20),
 
