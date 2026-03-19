@@ -27,7 +27,7 @@ class HelperSignInScreen extends ConsumerWidget {
       final admin = HelperSignIn.fromMap(adminSignInData);
       HelperSignIn helperSignInResponse = await HelperSignInApiService().createHelperSign(admin);
       if (helperSignInResponse.userId.isNotEmpty) {
-        Future.microtask(() => Navigator.pushReplacementNamed(context, Routes.dashboardDriver));
+        Future.microtask(() => Navigator.pushReplacementNamed(context, Routes.dashboardHelper));
       }
       return helperSignInResponse;
     }
@@ -48,24 +48,35 @@ class HelperSignInScreen extends ConsumerWidget {
               ),
               const SizedBox(height: 50),
               // Email field
-              TextFormField(
-                decoration: const InputDecoration(
-                  labelText: 'Email',
-                  prefixIcon: Icon(Icons.email),
-                ),
-                onSaved: (val) => adminSignInData["userId"] = val,
-                validator: (val) => val!.isEmpty ? "Required" : null,
-              ),
-              const SizedBox(height: 12),
+              Form(
+                key: formKey,
+                child: Column(
+                  children: [
+                    // Email field
+                    TextFormField(
+                      decoration: const InputDecoration(
+                        labelText: 'Email',
+                        prefixIcon: Icon(Icons.email),
+                      ),
+                      onSaved: (val) => adminSignInData["userId"] = val,
+                      validator: (val) => val!.isEmpty ? "Required" : null,
+                    ),
 
-              // Password field
-              TextFormField(
-                decoration: const InputDecoration(
-                  labelText: 'Password',
-                  prefixIcon: Icon(Icons.lock),
+                    const SizedBox(height: 12),
+
+                    // Password field
+                    TextFormField(
+                      decoration: const InputDecoration(
+                        labelText: 'Password',
+                        prefixIcon: Icon(Icons.lock),
+                      ),
+                      onSaved: (val) => adminSignInData["password"] = val,
+                      validator: (val) => val!.isEmpty ? "Required" : null,
+                    ),
+
+                    const SizedBox(height: 20),
+                  ],
                 ),
-                onSaved: (val) => adminSignInData["password"] = val,
-                validator: (val) => val!.isEmpty ? "Required" : null,
               ),
               const SizedBox(height: 20),
 
@@ -78,7 +89,12 @@ class HelperSignInScreen extends ConsumerWidget {
                     child: CustomButton(
                         label: 'Login',
                         onPressed: () => {
-                          Future.microtask(() => Navigator.pushReplacementNamed(context, Routes.dashboardHelper))
+                          if (formKey.currentState!.validate()) {
+                            formKey.currentState!.save(),
+                            ref.read(helperSignInProvider.notifier).state = adminSignInData,
+                            // TODO: Call API with citizenData
+                            signInUser()
+                          },
                         }/*ref
                           .read(authControllerProvider)
                           .signInWithEmail(

@@ -19,7 +19,7 @@ class HelperSignInApiService {
   // POST: Check sign in register citizen
   Future<HelperSignIn> createHelperSign(HelperSignIn citizenSignIn) async {
     try {
-      final response = await _dio.post('api/citizen-sign-in/read-citizen-sign-in', data: citizenSignIn.toJson());
+      final response = await _dio.post('/api/helper-sign-in/read', data: citizenSignIn.toJson());
       return HelperSignIn.fromJson(response.data);
     } on DioException catch (e) {
       throw _handleError(e);
