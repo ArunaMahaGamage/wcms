@@ -1,27 +1,26 @@
 import 'package:dio/dio.dart';
 import 'package:wcms/api/base_api_service.dart';
-import 'package:wcms/models/admin/admin_sign_in.dart';
-import 'package:wcms/models/citizen/citizen_sign_in.dart';
+import 'package:wcms/models/helper/helper_sign_in.dart';
 
 class HelperSignInApiService {
 
   final Dio _dio = BaseApiService().getDio();
 
   // POST: Create a new citizen
-  Future<CitizenSignIn> createCitizenSignUpdate(CitizenSignIn citizenSignIn) async {
+  Future<HelperSignIn> createCitizenSignUpdate(HelperSignIn citizenSignIn) async {
     try {
       final response = await _dio.post('api/citizen-sign-in/create-citizen-sign-in', data: citizenSignIn.toJson());
-      return CitizenSignIn.fromJson(response.data);
+      return HelperSignIn.fromJson(response.data);
     } on DioException catch (e) {
       throw _handleError(e);
     }
   }
 
   // POST: Check sign in register citizen
-  Future<AdminSignIn> createAdminSign(AdminSignIn citizenSignIn) async {
+  Future<HelperSignIn> createHelperSign(HelperSignIn citizenSignIn) async {
     try {
       final response = await _dio.post('api/citizen-sign-in/read-citizen-sign-in', data: citizenSignIn.toJson());
-      return AdminSignIn.fromJson(response.data);
+      return HelperSignIn.fromJson(response.data);
     } on DioException catch (e) {
       throw _handleError(e);
     }

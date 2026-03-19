@@ -25,7 +25,7 @@ class DriverSignInScreen extends ConsumerWidget {
       final admin = DriverSignIn.fromMap(adminSignInData);
       DriverSignIn citizenSignInResponse = await DriverSignInApiService().createAdminSign(admin);
       if (citizenSignInResponse.driverLicenceNumber.isNotEmpty) {
-        Future.microtask(() => Navigator.pushReplacementNamed(context, Routes.dashboardCitizen));
+        Future.microtask(() => Navigator.pushReplacementNamed(context, Routes.dashboardDriver));
       }
       return citizenSignInResponse;
     }

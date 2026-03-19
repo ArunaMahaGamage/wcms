@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:wcms/api/helper/helper_sign_in_api_service.dart';
+import 'package:wcms/models/helper/helper_sign_in.dart';
 
 import '../../components/custom_button.dart';
 import '../../config/image_links.dart';
 import '../../config/string_values.dart';
 import '../../core/routes.dart';
+
+final helperSignInProvider = StateProvider<Map<String, dynamic>>((ref) => {});
 
 class HelperSignInScreen extends ConsumerWidget {
   const HelperSignInScreen({super.key});
@@ -16,6 +20,19 @@ class HelperSignInScreen extends ConsumerWidget {
     // Controllers for email & password
     final emailController = TextEditingController();
     final passwordController = TextEditingController();
+
+    final formKey = GlobalKey<FormState>();
+    final adminSignInData = ref.watch(helperSignInProvider);
+
+    Future<HelperSignIn> signInUser() async {
+      //final citizenSignInData = ref.watch(citizenSignInProvider);
+      final admin = HelperSignIn.fromMap(adminSignInData);
+      HelperSignIn helperSignInResponse = await HelperSignInApiService().createHelperSign(admin);
+      if (helperSignInResponse.userID.isNotEmpty) {
+        Future.microtask(() => Navigator.pushReplacementNamed(context, Routes.dashboardDriver));
+      }
+      return helperSignInResponse;
+    }
 
     return Scaffold(
       appBar: AppBar(title: const Text('')),

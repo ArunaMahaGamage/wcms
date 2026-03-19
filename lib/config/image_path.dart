@@ -25,4 +25,12 @@ class ImagePaths {
   static const adminDashboardAddHelpers = 'assets/images/complain.jpeg';
   static const adminDashboardAddVehicles = 'assets/images/complain.jpeg';
   static const adminDashboardReports = 'assets/images/complain.jpeg';
+
+  // Driver
+  static const driverDashboardComplain = 'assets/images/complain.jpeg';
+  static const driverDashboardSchedule = 'assets/images/complain.jpeg';
+  static const driverDashboardRoutes = 'assets/images/complain.jpeg';
+  static const driverDashboardDriver = 'assets/images/complain.jpeg';
+  static const driverDashboardHelper = 'assets/images/complain.jpeg';
+  static const driverDashboardReports = 'assets/images/complain.jpeg';
 }
