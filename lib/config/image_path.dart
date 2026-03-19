@@ -15,4 +15,14 @@ class ImagePaths {
   static const citizenDashboardPolicyUpdates = 'assets/images/policy_update.jpg';
   static const citizenDashboardEnvironmentalImpact = 'assets/images/environmental_impact.jpg';
   static const citizenDashboardEnvironmentalLaw = 'assets/images/environmental_law.webp';
+
+  // Admin
+  static const adminDashboardComplain = 'assets/images/complain.jpeg';
+  static const adminDashboardCurrentSchedules = 'assets/images/complain.jpeg';
+  static const adminDashboardSchedulesRoutes = 'assets/images/complain.jpeg';
+  static const adminDashboardAddAdmin = 'assets/images/complain.jpeg';
+  static const adminDashboardAddDrivers = 'assets/images/complain.jpeg';
+  static const adminDashboardAddHelpers = 'assets/images/complain.jpeg';
+  static const adminDashboardAddVehicles = 'assets/images/complain.jpeg';
+  static const adminDashboardReports = 'assets/images/complain.jpeg';
 }
