@@ -48,9 +48,7 @@ class CitizenDashboardScreen extends ConsumerWidget {
                 } else if (items[index].title == items[8].title) {
 
                 } else if (items[index].title == items[9].title) {
-
-                } else if (items[index].title == items[10].title) {
-
+                  Future.microtask(() => Navigator.pushReplacementNamed(context, Routes.environmentalLawCitizen));
                 }
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(content: Text('You clicked on ${items[index].title}')),

@@ -26,6 +26,7 @@ class Routes {
   static const complaintCitizen = '/complaint_citizen';
   static const complaintCitizenStatus = '/complaint_citizen_status';
   static const complaintListCitizen = '/complaint_list_citizen';
+  static const environmentalLawCitizen = '/environmental_law_citizen';
 
   // Driver
   static const signInDriver = '/sign_in_driver';
