@@ -12,6 +12,7 @@ import 'package:wcms/views/citizen/citizen_complain_status_Screen.dart';
 import 'package:wcms/views/citizen/citizen_dashboard_screen.dart';
 import 'package:wcms/views/citizen/citizen_environmental_law.dart';
 import 'package:wcms/views/citizen/citizen_policy_update.dart';
+import 'package:wcms/views/citizen/citizen_recycling_tips.dart';
 import 'package:wcms/views/citizen/citizen_signIn_screen.dart';
 import 'package:wcms/views/citizen/citizen_sign_up_status_screen.dart';
 import 'package:wcms/views/citizen/citizen_signup_screen.dart';
@@ -73,8 +74,9 @@ class App extends ConsumerWidget {
         Routes.complaintCitizen: (_) => CitizenComplainScreen(),
         Routes.complaintCitizenStatus: (_) => CitizenComplainStatusScreen(),
         Routes.complaintListCitizen: (_) => CitizenComplainListScreen(),
-        Routes.citizenPolicyUpdateCitizen: (_) => CitizenPolicyUpdate(),
-        Routes.citizenEnvironmentImpactCitizen: (_) => CitizenEnvironmentImpact(),
+        Routes.recyclingTipsCitizen: (_) => CitizenRecyclingTips(),
+        Routes.policyUpdateCitizen: (_) => CitizenPolicyUpdate(),
+        Routes.environmentImpactCitizen: (_) => CitizenEnvironmentImpact(),
         Routes.environmentalLawCitizen: (_) => CitizenEnvironmentalLawScreen(),
         // Driver
         Routes.signInDriver: (_) => const DriverSignInScreen(),

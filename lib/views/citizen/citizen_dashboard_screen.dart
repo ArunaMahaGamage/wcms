@@ -42,11 +42,11 @@ class CitizenDashboardScreen extends ConsumerWidget {
                 } else if (items[index].title == items[5].title) {
 
                 } else if (items[index].title == items[6].title) {
-
+                  Future.microtask(() => Navigator.pushReplacementNamed(context, Routes.recyclingTipsCitizen));
                 } else if (items[index].title == items[7].title) {
-                  Future.microtask(() => Navigator.pushReplacementNamed(context, Routes.citizenPolicyUpdateCitizen));
+                  Future.microtask(() => Navigator.pushReplacementNamed(context, Routes.policyUpdateCitizen));
                 } else if (items[index].title == items[8].title) {
-                  Future.microtask(() => Navigator.pushReplacementNamed(context, Routes.citizenEnvironmentImpactCitizen));
+                  Future.microtask(() => Navigator.pushReplacementNamed(context, Routes.environmentImpactCitizen));
                 } else if (items[index].title == items[9].title) {
                   Future.microtask(() => Navigator.pushReplacementNamed(context, Routes.environmentalLawCitizen));
                 }
