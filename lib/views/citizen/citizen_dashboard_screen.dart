@@ -44,7 +44,7 @@ class CitizenDashboardScreen extends ConsumerWidget {
                 } else if (items[index].title == items[6].title) {
 
                 } else if (items[index].title == items[7].title) {
-
+                  Future.microtask(() => Navigator.pushReplacementNamed(context, Routes.citizenPolicyUpdateCitizen));
                 } else if (items[index].title == items[8].title) {
                   Future.microtask(() => Navigator.pushReplacementNamed(context, Routes.citizenEnvironmentImpactCitizen));
                 } else if (items[index].title == items[9].title) {
