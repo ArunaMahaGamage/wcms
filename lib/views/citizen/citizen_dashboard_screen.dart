@@ -36,7 +36,7 @@ class CitizenDashboardScreen extends ConsumerWidget {
                 } else if (items[index].title == items[2].title) {
                   Future.microtask(() => Navigator.pushReplacementNamed(context, Routes.requestRouteCitizen));
                 } else if (items[index].title == items[3].title) {
-
+                  Future.microtask(() => Navigator.pushReplacementNamed(context, Routes.requestNewBinCitizen));
                 } else if (items[index].title == items[4].title) {
 
                 } else if (items[index].title == items[5].title) {
