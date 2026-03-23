@@ -75,6 +75,9 @@ flutter:
      - assets/images/environmental_law.webp
      - assets/images/recycling_tips.jpeg
      - assets/images/environmental_impact.jpg
+     - assets/images/current_schedule.jpeg
+     - assets/images/scheduling_route_planning.png
+     - assets/images/add_admin_dashboard.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

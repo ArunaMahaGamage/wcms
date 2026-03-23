@@ -18,9 +18,9 @@ class ImagePaths {
 
   // Admin
   static const adminDashboardComplain = 'assets/images/complain.jpeg';
-  static const adminDashboardCurrentSchedules = 'assets/images/complain.jpeg';
-  static const adminDashboardSchedulesRoutes = 'assets/images/complain.jpeg';
-  static const adminDashboardAddAdmin = 'assets/images/complain.jpeg';
+  static const adminDashboardCurrentSchedules = 'assets/images/current_schedule.jpeg';
+  static const adminDashboardSchedulesRoutes = 'assets/images/scheduling_route_planning.png';
+  static const adminDashboardAddAdmin = 'assets/images/add_admin_dashboard.png';
   static const adminDashboardAddDrivers = 'assets/images/complain.jpeg';
   static const adminDashboardAddHelpers = 'assets/images/complain.jpeg';
   static const adminDashboardAddVehicles = 'assets/images/complain.jpeg';
