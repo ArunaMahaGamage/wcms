@@ -21,10 +21,10 @@ class ImagePaths {
   static const adminDashboardCurrentSchedules = 'assets/images/current_schedule.jpeg';
   static const adminDashboardSchedulesRoutes = 'assets/images/scheduling_route_planning.png';
   static const adminDashboardAddAdmin = 'assets/images/add_admin_dashboard.png';
-  static const adminDashboardAddDrivers = 'assets/images/complain.jpeg';
-  static const adminDashboardAddHelpers = 'assets/images/complain.jpeg';
-  static const adminDashboardAddVehicles = 'assets/images/complain.jpeg';
-  static const adminDashboardReports = 'assets/images/complain.jpeg';
+  static const adminDashboardAddDrivers = 'assets/images/add_driver.png';
+  static const adminDashboardAddHelpers = 'assets/images/add_helper.png';
+  static const adminDashboardAddVehicles = 'assets/images/add_vehicles.png';
+  static const adminDashboardReports = 'assets/images/admin_report.png';
 
   // Driver
   static const driverDashboardComplain = 'assets/images/complain.jpeg';

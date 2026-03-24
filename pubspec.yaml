@@ -78,6 +78,10 @@ flutter:
      - assets/images/current_schedule.jpeg
      - assets/images/scheduling_route_planning.png
      - assets/images/add_admin_dashboard.png
+     - assets/images/add_driver.png
+     - assets/images/add_helper.png
+     - assets/images/add_vehicles.png
+     - assets/images/admin_report.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
