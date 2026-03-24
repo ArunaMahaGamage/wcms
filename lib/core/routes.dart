@@ -11,10 +11,10 @@ class Routes {
   static const currentSchedulesAdmin = '/current_schedules_admin';
   static const schedulesRoutesAdmin = '/schedules_routes_admin';
   static const addAdmin = '/add_admin';
-  static const addDrivers = '/add_drivers';
-  static const addHelpers = '/add_helpers';
-  static const addVehicles = '/add_vehicles';
-  static const reports = '/reports';
+  static const addDrivers = '/add_drivers_admin';
+  static const addHelpers = '/add_helpers_admin';
+  static const addVehicles = '/add_vehicles_admin';
+  static const reportsAdmin = '/reports_admin';
 
 
 

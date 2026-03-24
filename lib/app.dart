@@ -63,11 +63,14 @@ class App extends ConsumerWidget {
         // Admin
         Routes.signInAdmin: (_) => const AdminSignInScreen(),
         Routes.dashboardAdmin: (_) => const AdminDashboardScreen(),
-
+        Routes.allComplainAdmin: (_) => const AddAdminScreen(),
+        Routes.currentSchedulesAdmin: (_) => const AddAdminScreen(),
+        Routes.schedulesRoutesAdmin: (_) => const AddAdminScreen(),
         Routes.addAdmin: (_) => const AddAdminScreen(),
         Routes.addDrivers: (_) => const AddDriverScreen(),
         Routes.addHelpers: (_) => const AddHelperScreen(),
         Routes.addVehicles: (_) => const AddVehicleScreen(),
+        Routes.reportsAdmin: (_) => const AddAdminScreen(),
         // Citizen
         Routes.signUpCitizen: (_) => const CitizenSignupScreen(),
         Routes.signUpCitizenStatus: (_) => const CitizenSignupStatusScreen(),

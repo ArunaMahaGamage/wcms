@@ -12,7 +12,7 @@ class AdminDashboardScreen extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Waste Collection Dashboard"),
+        title: Text("Waste Collection Admin Dashboard"),
         centerTitle: true,
       ),
       body: Padding(
@@ -44,7 +44,7 @@ class AdminDashboardScreen extends ConsumerWidget {
                 } else if (items[index].title == items[6].title) {
                   Future.microtask(() => Navigator.pushReplacementNamed(context, Routes.addVehicles));
                 } else if (items[index].title == items[7].title) {
-                  Future.microtask(() => Navigator.pushReplacementNamed(context, Routes.reports));
+                  Future.microtask(() => Navigator.pushReplacementNamed(context, Routes.reportsAdmin));
                 }
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(content: Text('You clicked on ${items[index].title}')),
