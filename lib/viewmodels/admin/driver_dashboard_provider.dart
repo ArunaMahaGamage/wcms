@@ -11,8 +11,8 @@ class DashboardItem {
 
 final driverDashboardItemsProvider = Provider<List<DashboardItem>>((ref) {
   return [
-    DashboardItem(title: "Work feedback", imagePath: ImagePaths.driverDashboardComplain),
-    DashboardItem(title: "Notification", imagePath: ImagePaths.driverDashboardSchedule),
+    DashboardItem(title: "Work feedback", imagePath: ImagePaths.driverDashboardFeedback),
+    DashboardItem(title: "Notification", imagePath: ImagePaths.driverDashboardNotification),
     DashboardItem(title: "Drivers Profile", imagePath: ImagePaths.driverDashboardDriver),
   ];
 });

@@ -82,6 +82,12 @@ flutter:
      - assets/images/add_helper.png
      - assets/images/add_vehicles.png
      - assets/images/admin_report.png
+     - assets/images/driver_feedback.png
+     - assets/images/driver_notification.png
+     - assets/images/driver_profile.png
+     - assets/images/helper_feedback.png
+     - assets/images/helper_notification.png
+     - assets/images/helper_profile.jpeg
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

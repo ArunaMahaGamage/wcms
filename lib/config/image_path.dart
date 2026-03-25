@@ -27,10 +27,18 @@ class ImagePaths {
   static const adminDashboardReports = 'assets/images/admin_report.png';
 
   // Driver
-  static const driverDashboardComplain = 'assets/images/complain.jpeg';
-  static const driverDashboardSchedule = 'assets/images/complain.jpeg';
+  static const driverDashboardFeedback = 'assets/images/driver_feedback.png';
+  static const driverDashboardNotification = 'assets/images/driver_notification.png';
   static const driverDashboardRoutes = 'assets/images/complain.jpeg';
-  static const driverDashboardDriver = 'assets/images/complain.jpeg';
+  static const driverDashboardDriver = 'assets/images/driver_profile.png';
   static const driverDashboardHelper = 'assets/images/complain.jpeg';
   static const driverDashboardReports = 'assets/images/complain.jpeg';
+
+  // Helper
+  static const helperDashboardFeedback = 'assets/images/helper_feedback.png';
+  static const helperDashboardNotification = 'assets/images/helper_notification.png';
+  static const helperDashboardRoutes = 'assets/images/complain.jpeg';
+  static const helperDashboardProfile = 'assets/images/helper_profile.jpeg';
+  static const helperDashboardHelper = 'assets/images/complain.jpeg';
+  static const helperDashboardReports = 'assets/images/complain.jpeg';
 }
