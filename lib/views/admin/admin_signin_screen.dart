@@ -43,6 +43,7 @@ class AdminSignInScreen extends ConsumerWidget {
             children: [
               const SizedBox(height: 50),
               Center(child: Text(StringValues.appName, style: Theme.of(context).textTheme.headlineSmall)),
+              Center(child: Text(StringValues.loginAdmin, style: Theme.of(context).textTheme.headlineSmall)),
               const SizedBox(height: 50),
               /*Image.network(
                 ImageLinks.loginScreenImage,

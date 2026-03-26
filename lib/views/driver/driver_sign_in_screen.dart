@@ -43,6 +43,7 @@ class DriverSignInScreen extends ConsumerWidget {
             children: [
               const SizedBox(height: 50),
               Center(child: Text(StringValues.appName, style: Theme.of(context).textTheme.headlineSmall)),
+              Center(child: Text(StringValues.loginDriver, style: Theme.of(context).textTheme.headlineSmall)),
               const SizedBox(height: 50),
               Image.asset(
                 ImagePaths.loginScreenImage,
