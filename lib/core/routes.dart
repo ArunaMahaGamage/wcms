@@ -28,6 +28,8 @@ class Routes {
   static const complaintListCitizen = '/complaint_list_citizen';
   static const requestRouteCitizen = '/request_route_citizen';
   static const requestNewBinCitizen = '/request_new_bin_citizen';
+  static const collection_schedule_citizen = '/collection_schedule_citizen';
+  static const notification_citizen = '/notification_citizen';
   static const recyclingTipsCitizen = '/recycling_tips_citizen';
   static const policyUpdateCitizen = '/citizen_policy_update_citizen';
   static const environmentImpactCitizen = '/environment_impact_citizen';

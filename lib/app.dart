@@ -6,6 +6,7 @@ import 'package:wcms/views/admin/add_helper_screen.dart';
 import 'package:wcms/views/admin/add_vehicle_screen.dart';
 import 'package:wcms/views/admin/admin_dashboard_screen.dart';
 import 'package:wcms/views/admin/admin_signin_screen.dart';
+import 'package:wcms/views/citizen/citizen_collection_schedule_screen.dart';
 import 'package:wcms/views/citizen/citizen_complain_list_screen.dart';
 import 'package:wcms/views/citizen/citizen_complain_screen.dart';
 import 'package:wcms/views/citizen/citizen_complain_status_Screen.dart';
@@ -13,6 +14,7 @@ import 'package:wcms/views/citizen/citizen_dashboard_screen.dart';
 import 'package:wcms/views/citizen/citizen_environmental_law.dart';
 import 'package:wcms/views/citizen/citizen_new_bin.dart';
 import 'package:wcms/views/citizen/citizen_new_vehicle_route.dart';
+import 'package:wcms/views/citizen/citizen_notification_list.dart';
 import 'package:wcms/views/citizen/citizen_policy_update.dart';
 import 'package:wcms/views/citizen/citizen_recycling_tips.dart';
 import 'package:wcms/views/citizen/citizen_signIn_screen.dart';
@@ -81,6 +83,8 @@ class App extends ConsumerWidget {
         Routes.complaintListCitizen: (_) => CitizenComplainListScreen(),
         Routes.requestRouteCitizen: (_) => RequestRouteScreen(),
         Routes.requestNewBinCitizen: (_) => RequestNewBinScreen(),
+        Routes.collection_schedule_citizen: (_) => CitizenCollectionScheduleScreen(),
+        Routes.notification_citizen: (_) => CitizenNotificationScreen(),
         Routes.recyclingTipsCitizen: (_) => CitizenRecyclingTips(),
         Routes.policyUpdateCitizen: (_) => CitizenPolicyUpdate(),
         Routes.environmentImpactCitizen: (_) => CitizenEnvironmentImpact(),

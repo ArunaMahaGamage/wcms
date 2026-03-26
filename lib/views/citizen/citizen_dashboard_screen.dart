@@ -38,9 +38,9 @@ class CitizenDashboardScreen extends ConsumerWidget {
                 } else if (items[index].title == items[3].title) {
                   Future.microtask(() => Navigator.pushReplacementNamed(context, Routes.requestNewBinCitizen));
                 } else if (items[index].title == items[4].title) {
-
+                  Future.microtask(() => Navigator.pushReplacementNamed(context, Routes.collection_schedule_citizen));
                 } else if (items[index].title == items[5].title) {
-
+                  Future.microtask(() => Navigator.pushReplacementNamed(context, Routes.notification_citizen));
                 } else if (items[index].title == items[6].title) {
                   Future.microtask(() => Navigator.pushReplacementNamed(context, Routes.recyclingTipsCitizen));
                 } else if (items[index].title == items[7].title) {
