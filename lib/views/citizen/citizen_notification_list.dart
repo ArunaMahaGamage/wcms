@@ -19,14 +19,14 @@ class CitizenNotificationScreen extends ConsumerWidget {
         ),
         title: const Text("Notifications"),
         centerTitle: true,
-        actions: [
+        /*actions: [
           IconButton(
             icon: const Icon(Icons.done_all),
             onPressed: () {
               // Logic to mark all as read
             },
           )
-        ],
+        ],*/
       ),
       body: notificationAsync.when(
         loading: () => const Center(child: CircularProgressIndicator()),
