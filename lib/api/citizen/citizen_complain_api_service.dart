@@ -19,10 +19,15 @@ class CitizenComplainApiService {
   }
 
   // POST: Check sign in register citizen
-  Future<Complain> createCitizenSign(Complain complain) async {
+  Future<List<Complain>> readAllComplaints(Complain complain) async {
     try {
-      final response = await _dio.post('/api/citizen-sign-in/read-citizen-sign-in', data: complain.toJson());
-      return Complain.fromJson(response.data);
+      final response = await _dio.post('/api/complain/read-all-complain', data: complain.toJson());
+      if (response.statusCode == 200) {
+        List<dynamic> data = response.data;
+        return data.map((item) => Complain.fromJson(item)).toList();
+      } else {
+        throw "Failed to load complaints";
+      }
     } on DioException catch (e) {
       throw _handleError(e);
     }

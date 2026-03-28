@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:wcms/core/routes.dart';
+import 'package:wcms/models/complain.dart';
 import '../../viewmodels/citizen/complaints_provider.dart';
 
 class CitizenComplainListScreen extends ConsumerWidget {
@@ -9,7 +10,8 @@ class CitizenComplainListScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     // Watching the provider (assuming it returns a List of Complaint objects)
-    final complaints = ref.watch(complainListProvider);
+    //final complaints = ref.watch(complainListProvider);
+    final complaintsList = ref.watch(allComplaintsProvider('893042458V'));
 
     return Scaffold(
       appBar: AppBar(
@@ -22,7 +24,26 @@ class CitizenComplainListScreen extends ConsumerWidget {
         title: const Text("Track Complaints"),
         centerTitle: true,
       ),
-      body: complaints.isEmpty
+      body: complaintsList.when(
+        data: (list) {
+          if (list.isEmpty) {
+            return _buildEmptyState();
+          }
+          return ListView.builder(
+            padding: const EdgeInsets.all(12),
+            itemCount: list.length,
+            itemBuilder: (context, index) {
+              final complaint = list[index];
+              return _buildComplaintCard(complaint, index);
+            },
+          );
+        },
+        loading: () => const Center(child: CircularProgressIndicator()),
+        error: (error, stack) => Center(
+          child: Text("Failed to load complaints: $error"),
+        ),
+      ),
+      /*body: complaintsList.isEmpty
           ? _buildEmptyState()
           : ListView.builder(
         padding: const EdgeInsets.all(12),
@@ -31,7 +52,7 @@ class CitizenComplainListScreen extends ConsumerWidget {
           final complaint = complaints[index];
           return _buildComplaintCard(complaint, index);
         },
-      ),
+      ),*/
       /*floatingActionButton: FloatingActionButton(
         onPressed: () {
           // Typically navigate to the "Create Complaint" screen
@@ -82,7 +103,7 @@ class CitizenComplainListScreen extends ConsumerWidget {
               children: [
                 Expanded(
                   child: Text(
-                    "Complaint #${complaint.id ?? index.toString()}",
+                    "Complaint #${complaint.complainIDNumber ?? index.toString()}",
                     style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       color: Colors.grey,
