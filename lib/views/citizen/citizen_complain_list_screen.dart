@@ -103,7 +103,7 @@ class CitizenComplainListScreen extends ConsumerWidget {
               children: [
                 Expanded(
                   child: Text(
-                    "Complaint #${complaint.complainIDNumber ?? index.toString()}",
+                    "Complaint # ${complaint.complainIDNumber ?? index.toString()}",
                     style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       color: Colors.grey,
