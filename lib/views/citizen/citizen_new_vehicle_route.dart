@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:wcms/core/routes.dart';
 import 'package:wcms/models/citizen/citizen_request_new_vehicle_route.dart';
 import 'package:wcms/viewmodels/citizen/citizen_request_route_notifier.dart';
+import 'package:wcms/viewmodels/citizen/citizen_sign_in_provider.dart';
 
 class RequestRouteScreen extends ConsumerStatefulWidget {
   const RequestRouteScreen({super.key});
@@ -57,6 +58,8 @@ class _RequestRouteScreenState extends ConsumerState<RequestRouteScreen> {
   @override
   Widget build(BuildContext context) {
     final submissionState = ref.watch(requestRouteProvider);
+    final citizenSignInStore = ref.watch(citizenSignInStoreProvider);
+    _idNumberController.text = citizenSignInStore!.idNumber;
 
     return Scaffold(
       appBar: AppBar(
@@ -79,6 +82,7 @@ class _RequestRouteScreenState extends ConsumerState<RequestRouteScreen> {
               const SizedBox(height: 16),
               TextFormField(
                 controller: _idNumberController,
+                readOnly: true,
                 decoration: const InputDecoration(labelText: 'ID Number', border: OutlineInputBorder()),
                 validator: (value) => value!.isEmpty ? 'Enter ID Number' : null,
               ),

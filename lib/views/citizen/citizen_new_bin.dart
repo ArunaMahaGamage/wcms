@@ -4,15 +4,19 @@ import 'package:wcms/components/custom_button.dart';
 import 'package:wcms/core/routes.dart';
 import 'package:wcms/models/citizen/request_new_bin.dart';
 import 'package:wcms/viewmodels/citizen/bin_request_provider.dart';
+import 'package:wcms/viewmodels/citizen/citizen_sign_in_provider.dart';
 // import 'package:wcms/api/citizen/bin_api_service.dart'; // Create this similar to CitizenApiService
 
 class RequestNewBinScreen extends ConsumerWidget {
-  const RequestNewBinScreen({Key? key}) : super(key: key);
+  RequestNewBinScreen({Key? key}) : super(key: key);
+
+  final _idNumberController = TextEditingController();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final formKey = GlobalKey<FormState>();
     final binData = ref.watch(binRequestFormProvider);
+    final citizenSignInStore = ref.watch(citizenSignInStoreProvider);
 
     Future<void> submitRequest() async {
       final request = RequestNewBin.fromMap(binData);
@@ -26,6 +30,8 @@ class RequestNewBinScreen extends ConsumerWidget {
       );
       Future.microtask(() => Navigator.pop(context));
     }
+
+    _idNumberController.text = citizenSignInStore!.idNumber;
 
     return Scaffold(
       appBar: AppBar(
@@ -41,27 +47,29 @@ class RequestNewBinScreen extends ConsumerWidget {
           child: Column(
             children: [
               TextFormField(
-                decoration: const InputDecoration(labelText: "Email", prefixIcon: Icon(Icons.email)),
+                decoration: const InputDecoration(labelText: "Email", prefixIcon: Icon(Icons.email), border: OutlineInputBorder()),
                 keyboardType: TextInputType.emailAddress,
                 onSaved: (val) => binData["email"] = val,
                 validator: (val) => val!.isEmpty ? "Required" : null,
+                readOnly: true,
               ),
               const SizedBox(height: 10),
               TextFormField(
-                decoration: const InputDecoration(labelText: "ID Number", prefixIcon: Icon(Icons.badge)),
+                controller: _idNumberController,
+                decoration: const InputDecoration(labelText: "ID Number", prefixIcon: Icon(Icons.badge), border: OutlineInputBorder()),
                 onSaved: (val) => binData["idNumber"] = val,
                 validator: (val) => val!.isEmpty ? "Required" : null,
               ),
               const SizedBox(height: 10),
               TextFormField(
-                decoration: const InputDecoration(labelText: "Address", prefixIcon: Icon(Icons.home)),
+                decoration: const InputDecoration(labelText: "Address", prefixIcon: Icon(Icons.home), border: OutlineInputBorder()),
                 maxLines: 2,
                 onSaved: (val) => binData["address"] = val,
                 validator: (val) => val!.isEmpty ? "Required" : null,
               ),
               const SizedBox(height: 10),
               TextFormField(
-                decoration: const InputDecoration(labelText: "Description", prefixIcon: Icon(Icons.description)),
+                decoration: const InputDecoration(labelText: "Description", prefixIcon: Icon(Icons.description), border: OutlineInputBorder()),
                 maxLines: 3,
                 onSaved: (val) => binData["description"] = val,
               ),
