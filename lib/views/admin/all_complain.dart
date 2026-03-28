@@ -70,10 +70,10 @@ class AllComplainScreen extends ConsumerWidget {
           child: Icon(Icons.report_problem, color: statusColor, size: 20),
         ),
         title: Text(
-          item.citizenName,
+          item.citizenIDNumber,
           style: const TextStyle(fontWeight: FontWeight.bold),
         ),
-        subtitle: Text("ID: ${item.idNumber} • ${DateFormat('MMM dd').format(item.createdAt)}"),
+        subtitle: Text("ID: ${item.complainIDNumber} "),
         trailing: Container(
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
           decoration: BoxDecoration(
