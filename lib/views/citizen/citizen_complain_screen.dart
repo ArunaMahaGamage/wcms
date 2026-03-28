@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:wcms/api/citizen/citizen_complain_api_service.dart';
 import 'package:wcms/core/routes.dart';
 import 'package:wcms/utils/simple_random_id.dart';
+import 'package:wcms/viewmodels/citizen/citizen_sign_in_provider.dart';
 
 import '../../models/complain.dart';
 import '../../viewmodels/citizen/complaints_provider.dart';
@@ -19,6 +20,9 @@ class CitizenComplainScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+
+    final citizenSignInStore = ref.watch(citizenSignInStoreProvider);
+    _citizenIDController.text = citizenSignInStore!.idNumber;
 
     Future<Complain> complainCitizen(Complain complainRequest) async {
       //final citizenSignInData = ref.watch(citizenSignInProvider);
@@ -53,6 +57,8 @@ class CitizenComplainScreen extends ConsumerWidget {
               SizedBox(height: 16),
               TextFormField(
                 controller: _citizenIDController,
+                readOnly: true,
+                //enabled: false,
                 decoration: InputDecoration(
                   labelText: "Citizen ID Number",
                   border: OutlineInputBorder(),
