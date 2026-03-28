@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:wcms/api/citizen/citizen_complain_api_service.dart';
 import 'package:wcms/core/routes.dart';
+import 'package:wcms/utils/simple_random_id.dart';
 
 import '../../models/complain.dart';
 import '../../viewmodels/citizen/complaints_provider.dart';
@@ -94,7 +95,7 @@ class CitizenComplainScreen extends ConsumerWidget {
                   if (_formKey.currentState!.validate()) {
                     final newComplaint = Complain(
                       //id: DateTime.now().millisecondsSinceEpoch,
-                      complainIDNumber: _complainTitleController.text,
+                      complainIDNumber: generateRandomId(10),//_complainTitleController.text,
                       citizenIDNumber: _citizenIDController.text,
                       complain: _complainController.text,
                       status: _status,
