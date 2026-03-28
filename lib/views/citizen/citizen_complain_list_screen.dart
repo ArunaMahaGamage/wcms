@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:wcms/core/routes.dart';
 import 'package:wcms/models/complain.dart';
+import 'package:wcms/viewmodels/citizen/citizen_sign_in_provider.dart';
 import '../../viewmodels/citizen/complaints_provider.dart';
 
 class CitizenComplainListScreen extends ConsumerWidget {
@@ -11,7 +12,8 @@ class CitizenComplainListScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     // Watching the provider (assuming it returns a List of Complaint objects)
     //final complaints = ref.watch(complainListProvider);
-    final complaintsList = ref.watch(allComplaintsProvider('893042458V'));
+    final citizenSignInStore = ref.watch(citizenSignInStoreProvider);
+    final complaintsList = ref.watch(allComplaintsProvider(citizenSignInStore!.idNumber));
 
     return Scaffold(
       appBar: AppBar(

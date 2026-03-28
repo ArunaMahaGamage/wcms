@@ -5,9 +5,9 @@ import 'package:wcms/config/image_path.dart';
 import 'package:wcms/models/citizen/citizen_sign_in.dart';
 
 import '../../components/custom_button.dart';
-import '../../config/image_links.dart';
 import '../../config/string_values.dart';
 import '../../core/routes.dart';
+import '../../viewmodels/citizen/citizen_sign_in_provider.dart';
 
 final citizenSignInProvider = StateProvider<Map<String, dynamic>>((ref) => {});
 
@@ -16,15 +16,15 @@ class CitizenSignInScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    //final authState = ref.watch(authProvider);
+    final citizenSignInStore = ref.watch(citizenSignInStoreProvider);
     final formKey = GlobalKey<FormState>();
     final citizenSignInData = ref.watch(citizenSignInProvider);
 
     Future<CitizenSignIn> signInUser() async {
-      //final citizenSignInData = ref.watch(citizenSignInProvider);
       final citizen = CitizenSignIn.fromMap(citizenSignInData);
       CitizenSignIn citizenSignInResponse = await CitizenSignInApiService().readCitizenSign(citizen);
       if (citizenSignInResponse.idNumber.isNotEmpty) {
+        ref.read(citizenSignInStoreProvider.notifier).state = citizenSignInResponse;
         Future.microtask(() => Navigator.pushReplacementNamed(context, Routes.dashboardCitizen));
       }
       return citizenSignInResponse;
