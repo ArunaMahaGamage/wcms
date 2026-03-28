@@ -3,10 +3,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:wcms/viewmodels/settings_provider.dart';
 import 'package:wcms/views/admin/add_driver_screen.dart';
 import 'package:wcms/views/admin/add_helper_screen.dart';
+import 'package:wcms/views/admin/add_schedule_screen.dart';
 import 'package:wcms/views/admin/add_vehicle_screen.dart';
 import 'package:wcms/views/admin/admin_dashboard_screen.dart';
 import 'package:wcms/views/admin/admin_signin_screen.dart';
 import 'package:wcms/views/admin/all_complain.dart';
+import 'package:wcms/views/admin/all_schedules_screen.dart';
 import 'package:wcms/views/citizen/citizen_collection_schedule_screen.dart';
 import 'package:wcms/views/citizen/citizen_complain_list_screen.dart';
 import 'package:wcms/views/citizen/citizen_complain_screen.dart';
@@ -67,8 +69,8 @@ class App extends ConsumerWidget {
         Routes.signInAdmin: (_) => const AdminSignInScreen(),
         Routes.dashboardAdmin: (_) => const AdminDashboardScreen(),
         Routes.allComplainAdmin: (_) => const AllComplainScreen(),
-        Routes.currentSchedulesAdmin: (_) => const AddAdminScreen(),
-        Routes.schedulesRoutesAdmin: (_) => const AddAdminScreen(),
+        Routes.currentSchedulesAdmin: (_) => const AllSchedulesScreen(),
+        Routes.schedulesRoutesAdmin: (_) => const AddScheduleScreen(),
         Routes.addAdmin: (_) => const AddAdminScreen(),
         Routes.addDrivers: (_) => const AddDriverScreen(),
         Routes.addHelpers: (_) => const AddHelperScreen(),
