@@ -10,6 +10,7 @@ import 'package:wcms/viewmodels/citizen/citizen_sign_in_provider.dart';
 class RequestNewBinScreen extends ConsumerWidget {
   RequestNewBinScreen({Key? key}) : super(key: key);
 
+  final _emailController = TextEditingController();
   final _idNumberController = TextEditingController();
 
   @override
@@ -32,6 +33,7 @@ class RequestNewBinScreen extends ConsumerWidget {
     }
 
     _idNumberController.text = citizenSignInStore!.idNumber;
+    _emailController.text = citizenSignInStore.userID;
 
     return Scaffold(
       appBar: AppBar(
@@ -47,6 +49,7 @@ class RequestNewBinScreen extends ConsumerWidget {
           child: Column(
             children: [
               TextFormField(
+                controller: _emailController,
                 decoration: const InputDecoration(labelText: "Email", prefixIcon: Icon(Icons.email), border: OutlineInputBorder()),
                 keyboardType: TextInputType.emailAddress,
                 onSaved: (val) => binData["email"] = val,

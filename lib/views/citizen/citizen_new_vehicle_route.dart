@@ -60,6 +60,7 @@ class _RequestRouteScreenState extends ConsumerState<RequestRouteScreen> {
     final submissionState = ref.watch(requestRouteProvider);
     final citizenSignInStore = ref.watch(citizenSignInStoreProvider);
     _idNumberController.text = citizenSignInStore!.idNumber;
+    _emailController.text = citizenSignInStore.userID;
 
     return Scaffold(
       appBar: AppBar(
@@ -75,6 +76,7 @@ class _RequestRouteScreenState extends ConsumerState<RequestRouteScreen> {
             children: [
               TextFormField(
                 controller: _emailController,
+                readOnly: true,
                 decoration: const InputDecoration(labelText: 'Email', border: OutlineInputBorder()),
                 keyboardType: TextInputType.emailAddress,
                 validator: (value) => value!.contains('@') ? null : 'Enter a valid email',
