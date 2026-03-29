@@ -7,6 +7,7 @@ class AdminHelper {
   final String gender;
   final String address;
   final String mobileNumber;
+  final String email;
 
   AdminHelper({
     this.id,
@@ -17,6 +18,7 @@ class AdminHelper {
     required this.gender,
     required this.address,
     required this.mobileNumber,
+    required this.email,
   });
 
   Map<String, dynamic> toJson() => {
@@ -28,6 +30,7 @@ class AdminHelper {
     'gender': gender,
     'address': address,
     'mobileNumber': mobileNumber,
+    'email': email,
   };
 
   factory AdminHelper.fromMap(Map<String, dynamic> map) {
@@ -40,6 +43,7 @@ class AdminHelper {
       gender: map['gender'] ?? 'Male',
       address: map['address'] ?? '',
       mobileNumber: map['mobileNumber'] ?? '',
+      email: map['email'] ?? '',
     );
   }
 }
