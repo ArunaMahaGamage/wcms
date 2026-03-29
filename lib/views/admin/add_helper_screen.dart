@@ -63,6 +63,12 @@ class AddHelperScreen extends ConsumerWidget {
               ),
               const SizedBox(height: 16),
               TextFormField(
+                decoration: const InputDecoration(labelText: "Email", border: OutlineInputBorder()),
+                keyboardType: TextInputType.emailAddress,
+                onSaved: (val) => helperData["email"] = val,
+              ),
+              const SizedBox(height: 16),
+              TextFormField(
                 decoration: const InputDecoration(labelText: "Mobile Number", border: OutlineInputBorder()),
                 keyboardType: TextInputType.phone,
                 onSaved: (val) => helperData["mobileNumber"] = val,
