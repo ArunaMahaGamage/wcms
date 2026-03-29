@@ -25,37 +25,43 @@ class AddHelperScreen extends ConsumerWidget {
           child: Column(
             children: [
               TextFormField(
-                decoration: const InputDecoration(labelText: "First Name"),
+                decoration: const InputDecoration(labelText: "First Name", border: OutlineInputBorder()),
                 onSaved: (val) => helperData["firstName"] = val,
                 validator: (val) => val!.isEmpty ? "Required" : null,
               ),
+              const SizedBox(height: 16),
               TextFormField(
-                decoration: const InputDecoration(labelText: "Last Name"),
+                decoration: const InputDecoration(labelText: "Last Name", border: OutlineInputBorder()),
                 onSaved: (val) => helperData["lastName"] = val,
               ),
+              const SizedBox(height: 16),
               TextFormField(
-                decoration: const InputDecoration(labelText: "ID Number"),
+                decoration: const InputDecoration(labelText: "ID Number", border: OutlineInputBorder()),
                 onSaved: (val) => helperData["idNumber"] = val,
                 validator: (val) => val!.isEmpty ? "Required" : null,
               ),
+              const SizedBox(height: 16),
               TextFormField(
-                decoration: const InputDecoration(labelText: "Date of Birth"),
+                decoration: const InputDecoration(labelText: "Date of Birth", border: OutlineInputBorder()),
                 onSaved: (val) => helperData["dateOfBirth"] = val,
               ),
+              const SizedBox(height: 16),
               DropdownButtonFormField(
-                decoration: const InputDecoration(labelText: "Gender"),
+                decoration: const InputDecoration(labelText: "Gender", border: OutlineInputBorder()),
                 items: ["Male", "Female", "Other"]
                     .map((g) => DropdownMenuItem(value: g, child: Text(g)))
                     .toList(),
                 onChanged: (val) => helperData["gender"] = val,
               ),
+              const SizedBox(height: 16),
               TextFormField(
-                decoration: const InputDecoration(labelText: "Address"),
+                decoration: const InputDecoration(labelText: "Address", border: OutlineInputBorder()),
                 maxLines: 2,
                 onSaved: (val) => helperData["address"] = val,
               ),
+              const SizedBox(height: 16),
               TextFormField(
-                decoration: const InputDecoration(labelText: "Mobile Number"),
+                decoration: const InputDecoration(labelText: "Mobile Number", border: OutlineInputBorder()),
                 keyboardType: TextInputType.phone,
                 onSaved: (val) => helperData["mobileNumber"] = val,
               ),
