@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:wcms/core/routes.dart';
+import 'package:wcms/viewmodels/admin/add_vehicle_provider.dart';
 
 final vehicleFormProvider = StateProvider<Map<String, dynamic>>((ref) => {});
 
@@ -11,6 +12,7 @@ class AddVehicleScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final formKey = GlobalKey<FormState>();
     final vehicleData = ref.watch(vehicleFormProvider);
+    final submissionState = ref.watch(vehicleSubmitProvider);
 
     return Scaffold(
       appBar: AppBar(
@@ -74,7 +76,7 @@ class AddVehicleScreen extends ConsumerWidget {
                 onChanged: (val) => vehicleData["gearType"] = val,
               ),
               const SizedBox(height: 20),
-              SizedBox(
+              /*SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
                   child: const Text("Submit"),
@@ -83,8 +85,53 @@ class AddVehicleScreen extends ConsumerWidget {
                       formKey.currentState!.save();
                       ref.read(vehicleFormProvider.notifier).state = vehicleData;
                       // TODO: Call API with vehicleData
+
                     }
                   },
+                ),
+              ),*/
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  // Disable the button while loading
+                  onPressed: submissionState.isLoading
+                      ? null
+                      : () async {
+                    if (formKey.currentState!.validate()) {
+                      formKey.currentState!.save();
+
+                      // 1. Update the local form data state
+                      ref.read(vehicleFormProvider.notifier).state = vehicleData;
+
+                      // 2. Call the submit function from the Notifier
+                      await ref.read(vehicleSubmitProvider.notifier).submit(vehicleData);
+
+                      // 3. Handle the result (Success or Error)
+                      if (ref.read(vehicleSubmitProvider).hasError) {
+                        // Show error message if API fails
+                        final error = ref.read(vehicleSubmitProvider).error;
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text("Error: $error"), backgroundColor: Colors.red),
+                        );
+                      } else {
+                        // Show success and navigate back
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(content: Text("Vehicle Added Successfully"), backgroundColor: Colors.green),
+                        );
+                        Future.microtask(() =>
+                            Navigator.pushReplacementNamed(context, Routes.dashboardAdmin)
+                        );
+                      }
+                    }
+                  },
+                  // Show a loading spinner if submission is in progress
+                  child: submissionState.isLoading
+                      ? const SizedBox(
+                      height: 20,
+                      width: 20,
+                      child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white)
+                  )
+                      : const Text("Submit"),
                 ),
               ),
             ],
