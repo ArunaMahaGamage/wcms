@@ -28,41 +28,49 @@ class AddDriverScreen extends ConsumerWidget {
           child: Column(
             children: [
               TextFormField(
-                decoration: const InputDecoration(labelText: "Driver Licence Number"),
+                decoration: const InputDecoration(labelText: "Driver Licence Number", border: OutlineInputBorder()),
                 onSaved: (val) => driverData["driverLicenceNumber"] = val,
                 validator: (val) => val!.isEmpty ? "Required" : null,
               ),
+              const SizedBox(height: 16),
               TextFormField(
-                decoration: const InputDecoration(labelText: "Driver ID Number"),
+                decoration: const InputDecoration(labelText: "Driver ID Number", border: OutlineInputBorder()),
                 onSaved: (val) => driverData["driverIDNumber"] = val,
               ),
+              const SizedBox(height: 16),
               TextFormField(
-                decoration: const InputDecoration(labelText: "Driver Full Name"),
+                decoration: const InputDecoration(labelText: "Driver Full Name", border: OutlineInputBorder()),
                 onSaved: (val) => driverData["driverFullName"] = val,
               ),
+              const SizedBox(height: 16),
               TextFormField(
-                decoration: const InputDecoration(labelText: "First Name"),
+                decoration: const InputDecoration(labelText: "First Name", border: OutlineInputBorder()),
                 onSaved: (val) => driverData["firstName"] = val,
               ),
+              const SizedBox(height: 16),
               TextFormField(
-                decoration: const InputDecoration(labelText: "Last Name"),
+                decoration: const InputDecoration(labelText: "Last Name", border: OutlineInputBorder()),
                 onSaved: (val) => driverData["lastName"] = val,
               ),
+              const SizedBox(height: 16),
               TextFormField(
-                decoration: const InputDecoration(labelText: "Birth Date"),
+                decoration: const InputDecoration(labelText: "Birth Date", border: OutlineInputBorder()),
                 onSaved: (val) => driverData["birthDate"] = val,
               ),
+              const SizedBox(height: 16),
               TextFormField(
-                decoration: const InputDecoration(labelText: "Licence Date of Issue"),
+                decoration: const InputDecoration(labelText: "Licence Date of Issue", border: OutlineInputBorder()),
                 onSaved: (val) => driverData["licenceDateOfIssue"] = val,
               ),
+              const SizedBox(height: 16),
               TextFormField(
-                decoration: const InputDecoration(labelText: "Address"),
+                decoration: const InputDecoration(labelText: "Address", border: OutlineInputBorder()),
                 maxLines: 2,
                 onSaved: (val) => driverData["address"] = val,
               ),
+              const SizedBox(height: 16),
               TextFormField(
-                decoration: const InputDecoration(labelText: "Mobile Number"),
+                decoration: const InputDecoration(labelText: "Mobile Number", border: OutlineInputBorder()),
                 keyboardType: TextInputType.phone,
                 onSaved: (val) => driverData["mobileNumber"] = val,
               ),
