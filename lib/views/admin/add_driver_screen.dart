@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:wcms/core/routes.dart';
+import 'package:wcms/viewmodels/admin/admin_add_driver_provider.dart';
 
 final driverProvider = StateProvider<Map<String, dynamic>>((ref) => {});
 
@@ -11,6 +12,8 @@ class AddDriverScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final formKey = GlobalKey<FormState>();
     final driverData = ref.watch(driverProvider);
+
+    final submissionState = ref.watch(driverSubmitProvider);
 
     return Scaffold(
       appBar: AppBar(
@@ -90,7 +93,7 @@ class AddDriverScreen extends ConsumerWidget {
                 },
               )),
               const SizedBox(height: 20),
-              ElevatedButton(
+              /*ElevatedButton(
                 child: const Text("Submit"),
                 onPressed: () {
                   if (formKey.currentState!.validate()) {
@@ -99,6 +102,36 @@ class AddDriverScreen extends ConsumerWidget {
                     // TODO: Call API with driverData
                   }
                 },
+              ),*/
+              // ... inside your Column, replace the ElevatedButton section:
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: submissionState.isLoading
+                      ? null
+                      : () async {
+                    if (formKey.currentState!.validate()) {
+                      formKey.currentState!.save();
+
+                      // Trigger the API call
+                      await ref.read(driverSubmitProvider.notifier).submit(driverData);
+
+                      if (ref.read(driverSubmitProvider).hasError) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text("${ref.read(driverSubmitProvider).error}"), backgroundColor: Colors.red),
+                        );
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(content: Text("Driver Added Successfully"), backgroundColor: Colors.green),
+                        );
+                        Navigator.pushReplacementNamed(context, Routes.dashboardAdmin);
+                      }
+                    }
+                  },
+                  child: submissionState.isLoading
+                      ? const SizedBox(height: 20, width: 20, child: CircularProgressIndicator(strokeWidth: 2))
+                      : const Text("Submit Driver"),
+                ),
               ),
             ],
           ),
