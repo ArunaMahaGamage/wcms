@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:wcms/core/routes.dart';
+import 'package:wcms/viewmodels/admin/admin_helper_provider.dart';
 
 final helperFormProvider = StateProvider<Map<String, dynamic>>((ref) => {});
 
@@ -11,6 +12,7 @@ class AddHelperScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final formKey = GlobalKey<FormState>();
     final helperData = ref.watch(helperFormProvider);
+    final submissionState = ref.watch(helperSubmitProvider);
 
     return Scaffold(
       appBar: AppBar(
@@ -66,7 +68,7 @@ class AddHelperScreen extends ConsumerWidget {
                 onSaved: (val) => helperData["mobileNumber"] = val,
               ),
               const SizedBox(height: 20),
-              ElevatedButton(
+              /*ElevatedButton(
                 child: const Text("Submit"),
                 onPressed: () {
                   if (formKey.currentState!.validate()) {
@@ -75,6 +77,37 @@ class AddHelperScreen extends ConsumerWidget {
                     // TODO: Call API with helperData
                   }
                 },
+              ),*/
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  child: submissionState.isLoading
+                      ? const SizedBox(height: 20, width: 20, child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white))
+                      : const Text("Submit"),
+                  onPressed: submissionState.isLoading ? null : () async {
+                    if (formKey.currentState!.validate()) {
+                      formKey.currentState!.save();
+
+                      // Update form data provider
+                      ref.read(helperFormProvider.notifier).state = helperData;
+
+                      // Call the API via the notifier
+                      await ref.read(helperSubmitProvider.notifier).submit(helperData);
+
+                      // Handle Result
+                      if (ref.read(helperSubmitProvider).hasError) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text("${ref.read(helperSubmitProvider).error}"), backgroundColor: Colors.red),
+                        );
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(content: Text("Helper added successfully!"), backgroundColor: Colors.green),
+                        );
+                        Future.microtask(() => Navigator.pushReplacementNamed(context, Routes.dashboardAdmin));
+                      }
+                    }
+                  },
+                ),
               ),
             ],
           ),
