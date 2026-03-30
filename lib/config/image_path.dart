@@ -24,6 +24,7 @@ class ImagePaths {
   static const adminDashboardAddDrivers = 'assets/images/add_driver.png';
   static const adminDashboardAddHelpers = 'assets/images/add_helper.png';
   static const adminDashboardAddVehicles = 'assets/images/add_vehicles.png';
+  static const adminDashboardManagingResources = 'assets/images/managing_resources.png';
   static const adminDashboardReports = 'assets/images/admin_report.png';
 
   // Driver

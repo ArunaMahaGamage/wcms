@@ -44,6 +44,8 @@ class AdminDashboardScreen extends ConsumerWidget {
                 } else if (items[index].title == items[6].title) {
                   Future.microtask(() => Navigator.pushReplacementNamed(context, Routes.addVehicles));
                 } else if (items[index].title == items[7].title) {
+                  Future.microtask(() => Navigator.pushReplacementNamed(context, Routes.manageTeamAdmin));
+                } else if (items[index].title == items[7].title) {
                   Future.microtask(() => Navigator.pushReplacementNamed(context, Routes.reportsAdmin));
                 }
                 ScaffoldMessenger.of(context).showSnackBar(

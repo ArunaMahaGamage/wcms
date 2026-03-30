@@ -9,6 +9,7 @@ import 'package:wcms/views/admin/admin_dashboard_screen.dart';
 import 'package:wcms/views/admin/admin_signin_screen.dart';
 import 'package:wcms/views/admin/all_complain.dart';
 import 'package:wcms/views/admin/all_schedules_screen.dart';
+import 'package:wcms/views/admin/manage_team_screen.dart';
 import 'package:wcms/views/citizen/citizen_collection_schedule_screen.dart';
 import 'package:wcms/views/citizen/citizen_complain_list_screen.dart';
 import 'package:wcms/views/citizen/citizen_complain_screen.dart';
@@ -75,6 +76,7 @@ class App extends ConsumerWidget {
         Routes.addDrivers: (_) => const AddDriverScreen(),
         Routes.addHelpers: (_) => const AddHelperScreen(),
         Routes.addVehicles: (_) => const AddVehicleScreen(),
+        Routes.manageTeamAdmin: (_) => const ManageTeamScreen(),
         Routes.reportsAdmin: (_) => const AddAdminScreen(),
         // Citizen
         Routes.signUpCitizen: (_) => const CitizenSignupScreen(),

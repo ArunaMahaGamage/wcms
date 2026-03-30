@@ -18,6 +18,7 @@ final adminDashboardItemsProvider = Provider<List<DashboardItem>>((ref) {
     DashboardItem(title: "Add Drivers", imagePath: ImagePaths.adminDashboardAddDrivers),
     DashboardItem(title: "Add Helpers", imagePath: ImagePaths.adminDashboardAddHelpers),
     DashboardItem(title: "Add Vehicles", imagePath: ImagePaths.adminDashboardAddVehicles),
+    DashboardItem(title: "Manage Resources", imagePath: ImagePaths.adminDashboardManagingResources),
     DashboardItem(title: "Reports", imagePath: ImagePaths.adminDashboardReports),
   ];
 });

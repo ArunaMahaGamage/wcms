@@ -89,6 +89,7 @@ flutter:
      - assets/images/helper_feedback.png
      - assets/images/helper_notification.png
      - assets/images/helper_profile.jpeg
+     - assets/images/managing_resources.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

@@ -14,6 +14,7 @@ class Routes {
   static const addDrivers = '/add_drivers_admin';
   static const addHelpers = '/add_helpers_admin';
   static const addVehicles = '/add_vehicles_admin';
+  static const manageTeamAdmin = '/manage_team_admin';
   static const reportsAdmin = '/reports_admin';
 
 
