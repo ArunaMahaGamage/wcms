@@ -36,22 +36,26 @@ class AddVehicleScreen extends ConsumerWidget {
               TextFormField(
                 decoration: const InputDecoration(labelText: "Type", border: OutlineInputBorder()),
                 onSaved: (val) => vehicleData["type"] = val,
+                validator: (val) => val!.isEmpty ? "Required" : null,
               ),
               const SizedBox(height: 16),
               TextFormField(
                 decoration: const InputDecoration(labelText: "Model", border: OutlineInputBorder()),
                 onSaved: (val) => vehicleData["model"] = val,
+                validator: (val) => val!.isEmpty ? "Required" : null,
               ),
               const SizedBox(height: 16),
               TextFormField(
                 decoration: const InputDecoration(labelText: "Manufacture", border: OutlineInputBorder()),
                 onSaved: (val) => vehicleData["manufacture"] = val,
+                validator: (val) => val!.isEmpty ? "Required" : null,
               ),
               const SizedBox(height: 16),
               TextFormField(
                 decoration: const InputDecoration(labelText: "Manufacture Year", border: OutlineInputBorder()),
                 keyboardType: TextInputType.number,
                 onSaved: (val) => vehicleData["manufactureYear"] = val,
+                validator: (val) => val!.isEmpty ? "Required" : null,
               ),
               const SizedBox(height: 16),
               DropdownButtonFormField(
@@ -60,6 +64,7 @@ class AddVehicleScreen extends ConsumerWidget {
                     .map((f) => DropdownMenuItem(value: f, child: Text(f)))
                     .toList(),
                 onChanged: (val) => vehicleData["fuelType"] = val,
+                validator: (val) => val!.isEmpty ? "Required" : null,
               ),
               const SizedBox(height: 16),
               TextFormField(
