@@ -41,17 +41,6 @@ class ManageTeamScreen extends ConsumerWidget {
               ),
               const SizedBox(height: 16),
 
-              TextFormField(
-                decoration: const InputDecoration(
-                  labelText: "Staff ID Number (NIC)",
-                  border: OutlineInputBorder(),
-                  prefixIcon: Icon(Icons.badge),
-                ),
-                onSaved: (val) => teamData['idNumber'] = val,
-                validator: (val) => val!.isEmpty ? "Required" : null,
-              ),
-              const SizedBox(height: 16),
-
               DropdownButtonFormField<String>(
                 value: teamData['jobRole'],
                 decoration: const InputDecoration(
@@ -64,6 +53,17 @@ class ManageTeamScreen extends ConsumerWidget {
                 onChanged: (val) => teamData['jobRole'] = val,
               ),
               const SizedBox(height: 30),
+
+              TextFormField(
+                decoration: const InputDecoration(
+                  labelText: "Staff ID Number (NIC)",
+                  border: OutlineInputBorder(),
+                  prefixIcon: Icon(Icons.badge),
+                ),
+                onSaved: (val) => teamData['idNumber'] = val,
+                validator: (val) => val!.isEmpty ? "Required" : null,
+              ),
+              const SizedBox(height: 16),
 
               SizedBox(
                 width: double.infinity,
