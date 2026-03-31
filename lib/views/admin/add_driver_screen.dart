@@ -5,21 +5,50 @@ import 'package:wcms/viewmodels/admin/admin_add_driver_provider.dart';
 
 final driverProvider = StateProvider<Map<String, dynamic>>((ref) => {});
 
-class AddDriverScreen extends ConsumerWidget {
+class AddDriverScreen extends ConsumerStatefulWidget {
   const AddDriverScreen({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<AddDriverScreen> createState() => _AddDriverScreenState();
+}
+
+class _AddDriverScreenState extends ConsumerState<AddDriverScreen> {
+  // 1. Define Controllers to hold text state
+  final Map<String, TextEditingController> _controllers = {
+    "driverLicenceNumber": TextEditingController(),
+    "driverIdNumber": TextEditingController(),
+    "driverFullName": TextEditingController(),
+    "firstName": TextEditingController(),
+    "lastName": TextEditingController(),
+    "birthDate": TextEditingController(),
+    "licenceDateOfIssue": TextEditingController(),
+    "address": TextEditingController(),
+    "mobileNumber": TextEditingController(),
+    "email": TextEditingController(),
+  };
+
+  @override
+  void dispose() {
+    // Clean up controllers
+    for (var controller in _controllers.values) {
+      controller.dispose();
+    }
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final formKey = GlobalKey<FormState>();
     final driverData = ref.watch(driverProvider);
-
     final submissionState = ref.watch(driverSubmitProvider);
 
     return Scaffold(
       appBar: AppBar(
           leading: IconButton(
-              icon: Icon(Icons.arrow_back), onPressed: () => Future.microtask(() => Navigator.pushReplacementNamed(context, Routes.dashboardAdmin))
-          ),
+              icon: const Icon(Icons.arrow_back),
+              onPressed: () => Future.microtask(() =>
+                  Navigator.pushReplacementNamed(
+                      context, Routes.dashboardAdmin))),
           title: const Text("Add Driver")),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
@@ -27,63 +56,30 @@ class AddDriverScreen extends ConsumerWidget {
           key: formKey,
           child: Column(
             children: [
-              TextFormField(
-                decoration: const InputDecoration(labelText: "Driver Licence Number", border: OutlineInputBorder()),
-                onSaved: (val) => driverData["driverLicenceNumber"] = val,
-                validator: (val) => val!.isEmpty ? "Required" : null,
-              ),
+              // 2. Use Controller instead of initialValue + onChanged
+              _buildTextField("driverLicenceNumber", "Driver Licence Number"),
               const SizedBox(height: 16),
-              TextFormField(
-                decoration: const InputDecoration(labelText: "Driver ID Number", border: OutlineInputBorder()),
-                onSaved: (val) => driverData["driverIDNumber"] = val,
-                validator: (val) => val!.isEmpty ? "Required" : null,
-              ),
+              _buildTextField("driverIdNumber", "Driver ID Number"),
               const SizedBox(height: 16),
-              TextFormField(
-                decoration: const InputDecoration(labelText: "Driver Full Name", border: OutlineInputBorder()),
-                onSaved: (val) => driverData["driverFullName"] = val,
-                validator: (val) => val!.isEmpty ? "Required" : null,
-              ),
+              _buildTextField("driverFullName", "Driver Full Name"),
               const SizedBox(height: 16),
-              TextFormField(
-                decoration: const InputDecoration(labelText: "First Name", border: OutlineInputBorder()),
-                onSaved: (val) => driverData["firstName"] = val,
-                validator: (val) => val!.isEmpty ? "Required" : null,
-              ),
+              _buildTextField("firstName", "First Name"),
               const SizedBox(height: 16),
-              TextFormField(
-                decoration: const InputDecoration(labelText: "Last Name", border: OutlineInputBorder()),
-                onSaved: (val) => driverData["lastName"] = val,
-                validator: (val) => val!.isEmpty ? "Required" : null,
-              ),
+              _buildTextField("lastName", "Last Name"),
               const SizedBox(height: 16),
-              TextFormField(
-                decoration: const InputDecoration(labelText: "Birth Date", border: OutlineInputBorder()),
-                onSaved: (val) => driverData["birthDate"] = val,
-                validator: (val) => val!.isEmpty ? "Required" : null,
-              ),
+              _buildTextField("birthDate", "Birth Date"),
               const SizedBox(height: 16),
-              TextFormField(
-                decoration: const InputDecoration(labelText: "Licence Date of Issue", border: OutlineInputBorder()),
-                onSaved: (val) => driverData["licenceDateOfIssue"] = val,
-                validator: (val) => val!.isEmpty ? "Required" : null,
-              ),
+              _buildTextField("licenceDateOfIssue", "Licence Date of Issue"),
               const SizedBox(height: 16),
-              TextFormField(
-                decoration: const InputDecoration(labelText: "Address", border: OutlineInputBorder()),
-                maxLines: 2,
-                onSaved: (val) => driverData["address"] = val,
-                validator: (val) => val!.isEmpty ? "Required" : null,
-              ),
+              _buildTextField("address", "Address", maxLines: 2),
               const SizedBox(height: 16),
-              TextFormField(
-                decoration: const InputDecoration(labelText: "Mobile Number", border: OutlineInputBorder()),
-                keyboardType: TextInputType.phone,
-                onSaved: (val) => driverData["mobileNumber"] = val,
-                validator: (val) => val!.isEmpty ? "Required" : null,
-              ),
+              _buildTextField("mobileNumber", "Mobile Number", keyboardType: TextInputType.phone),
               const SizedBox(height: 20),
-              const Text("License Categories", style: TextStyle(fontWeight: FontWeight.bold)),
+              _buildTextField("email", "Email", keyboardType: TextInputType.emailAddress),
+
+              const SizedBox(height: 20),
+              const Text("License Categories",
+                  style: TextStyle(fontWeight: FontWeight.bold)),
               ...[
                 "lightMotorcycles",
                 "motorcycles",
@@ -102,6 +98,7 @@ class AddDriverScreen extends ConsumerWidget {
                 title: Text(category),
                 value: driverData[category] ?? false,
                 onChanged: (val) {
+                  // Switch toggles now rebuild the UI, but Controllers keep the text safe!
                   ref.read(driverProvider.notifier).state = {
                     ...driverData,
                     category: val,
@@ -109,17 +106,6 @@ class AddDriverScreen extends ConsumerWidget {
                 },
               )),
               const SizedBox(height: 20),
-              /*ElevatedButton(
-                child: const Text("Submit"),
-                onPressed: () {
-                  if (formKey.currentState!.validate()) {
-                    formKey.currentState!.save();
-                    ref.read(driverProvider.notifier).state = driverData;
-                    // TODO: Call API with driverData
-                  }
-                },
-              ),*/
-              // ... inside your Column, replace the ElevatedButton section:
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
@@ -127,25 +113,37 @@ class AddDriverScreen extends ConsumerWidget {
                       ? null
                       : () async {
                     if (formKey.currentState!.validate()) {
-                      formKey.currentState!.save();
+                      // 3. Collect text from controllers before submitting
+                      Map<String, dynamic> finalData = Map.from(driverData);
+                      _controllers.forEach((key, controller) {
+                        finalData[key] = controller.text;
+                      });
 
-                      // Trigger the API call
-                      await ref.read(driverSubmitProvider.notifier).submit(driverData);
+                      await ref
+                          .read(driverSubmitProvider.notifier)
+                          .submit(finalData);
 
                       if (ref.read(driverSubmitProvider).hasError) {
                         ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text("${ref.read(driverSubmitProvider).error}"), backgroundColor: Colors.red),
+                          SnackBar(
+                              content: Text("${ref.read(driverSubmitProvider).error}"),
+                              backgroundColor: Colors.red),
                         );
                       } else {
                         ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text("Driver Added Successfully"), backgroundColor: Colors.green),
+                          const SnackBar(
+                              content: Text("Driver Added Successfully"),
+                              backgroundColor: Colors.green),
                         );
                         Navigator.pushReplacementNamed(context, Routes.dashboardAdmin);
                       }
                     }
                   },
                   child: submissionState.isLoading
-                      ? const SizedBox(height: 20, width: 20, child: CircularProgressIndicator(strokeWidth: 2))
+                      ? const SizedBox(
+                      height: 20,
+                      width: 20,
+                      child: CircularProgressIndicator(strokeWidth: 2))
                       : const Text("Submit Driver"),
                 ),
               ),
@@ -153,6 +151,20 @@ class AddDriverScreen extends ConsumerWidget {
           ),
         ),
       ),
+    );
+  }
+
+  // Helper method to build text fields using controllers
+  Widget _buildTextField(String key, String label, {int maxLines = 1, TextInputType? keyboardType}) {
+    return TextFormField(
+      controller: _controllers[key],
+      maxLines: maxLines,
+      keyboardType: keyboardType,
+      decoration: InputDecoration(
+        labelText: label,
+        border: const OutlineInputBorder(),
+      ),
+      validator: (val) => val == null || val.isEmpty ? "Required" : null,
     );
   }
 }
