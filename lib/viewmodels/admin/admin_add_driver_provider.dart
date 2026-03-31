@@ -16,8 +16,22 @@ class DriverSubmitNotifier extends StateNotifier<AsyncValue<void>> {
       state = AsyncValue.error(e, st);
     }
   }
+
+  Future<void> readAllDrivers() async {
+    state = const AsyncValue.loading();
+    try {
+      await DriverApiService().readAllDrivers();
+      state = const AsyncValue.data(null);
+    } catch (e, st) {
+      state = AsyncValue.error(e, st);
+    }
+  }
 }
 
 final driverSubmitProvider = StateNotifierProvider<DriverSubmitNotifier, AsyncValue<void>>((ref) {
   return DriverSubmitNotifier();
+});
+
+final allDriversProvider = FutureProvider<List<AdminDriver>>((ref) async {
+  return await DriverApiService().readAllDrivers();
 });

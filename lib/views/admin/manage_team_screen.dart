@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:wcms/models/admin/admin_driver.dart';
+import 'package:wcms/models/admin/admin_helper.dart';
+import 'package:wcms/viewmodels/admin/admin_add_driver_provider.dart';
 import 'package:wcms/viewmodels/admin/admin_manage_team_provider.dart';
+import 'package:wcms/viewmodels/admin/admin_helper_provider.dart'; // Import Helper provider
 import 'package:wcms/core/routes.dart';
 
 class ManageTeamScreen extends ConsumerWidget {
@@ -11,6 +15,10 @@ class ManageTeamScreen extends ConsumerWidget {
     final formKey = GlobalKey<FormState>();
     final teamData = ref.watch(teamFormProvider);
     final submissionState = ref.watch(teamSubmitProvider);
+
+    // 1. Watch the lists for Drivers and Helpers
+    final driversAsync = ref.watch(allDriversProvider);
+    final helpersAsync = ref.watch(allHelpersProvider);
 
     return Scaffold(
       appBar: AppBar(
@@ -41,6 +49,7 @@ class ManageTeamScreen extends ConsumerWidget {
               ),
               const SizedBox(height: 16),
 
+              // 2. Job Role Dropdown (updates state to trigger list change)
               DropdownButtonFormField<String>(
                 value: teamData['jobRole'],
                 decoration: const InputDecoration(
@@ -50,20 +59,26 @@ class ManageTeamScreen extends ConsumerWidget {
                 items: ['Driver', 'Helper', 'Supervisor']
                     .map((role) => DropdownMenuItem(value: role, child: Text(role)))
                     .toList(),
-                onChanged: (val) => teamData['jobRole'] = val,
+                onChanged: (val) {
+                  ref.read(teamFormProvider.notifier).state = {
+                    ...teamData,
+                    'jobRole': val,
+                    'idNumber': '', // Reset selection when role changes
+                  };
+                },
               ),
               const SizedBox(height: 30),
 
-              TextFormField(
-                decoration: const InputDecoration(
-                  labelText: "Staff ID Number (NIC)",
-                  border: OutlineInputBorder(),
-                  prefixIcon: Icon(Icons.badge),
-                ),
-                onSaved: (val) => teamData['idNumber'] = val,
-                validator: (val) => val!.isEmpty ? "Required" : null,
+              // 3. Dynamic Staff ID Selection based on Role
+              _buildStaffSelector(
+                role: teamData['jobRole'],
+                driversAsync: driversAsync,
+                helpersAsync: helpersAsync,
+                currentValue: teamData['idNumber'],
+                onChanged: (val) => teamData['idNumber'] = val,
               ),
-              const SizedBox(height: 16),
+
+              const SizedBox(height: 30),
 
               SizedBox(
                 width: double.infinity,
@@ -97,6 +112,56 @@ class ManageTeamScreen extends ConsumerWidget {
           ),
         ),
       ),
+    );
+  }
+
+  // 4. Helper Widget to build the dynamic selector
+  Widget _buildStaffSelector({
+    required String? role,
+    required AsyncValue<List<AdminDriver>> driversAsync,
+    required AsyncValue<List<AdminHelper>> helpersAsync,
+    required String? currentValue,
+    required Function(String?) onChanged,
+  }) {
+    if (role == 'Driver') {
+      return driversAsync.when(
+        data: (drivers) => _buildDropdown("Select Driver", drivers, (d) => d.driverIdNumber, (d) => d.firstName, currentValue, onChanged),
+        loading: () => const LinearProgressIndicator(),
+        error: (err, _) => Text("Error loading drivers: $err"),
+      );
+    } else if (role == 'Helper') {
+      return helpersAsync.when(
+        data: (helpers) => _buildDropdown("Select Helper", helpers, (h) => h.idNumber, (h) => h.firstName, currentValue, onChanged),
+        loading: () => const LinearProgressIndicator(),
+        error: (err, _) => Text("Error loading helpers: $err"),
+      );
+    } else {
+      // Default for Supervisor or others if no API exists yet
+      return TextFormField(
+        decoration: const InputDecoration(labelText: "Staff ID Number", border: OutlineInputBorder(), prefixIcon: Icon(Icons.badge)),
+        onChanged: onChanged,
+        validator: (val) => val!.isEmpty ? "Required" : null,
+      );
+    }
+  }
+
+  Widget _buildDropdown<T>(
+      String label,
+      List<T> items,
+      String Function(T) getId,
+      String Function(T) getName,
+      String? currentValue,
+      Function(String?) onChanged,
+      ) {
+    return DropdownButtonFormField<String>(
+      decoration: InputDecoration(labelText: label, border: const OutlineInputBorder(), prefixIcon: const Icon(Icons.badge)),
+      value: currentValue!.isEmpty ? null : currentValue,
+      items: items.map((item) => DropdownMenuItem(
+        value: getId(item),
+        child: Text("${getName(item)} (${getId(item)})"),
+      )).toList(),
+      onChanged: onChanged,
+      validator: (val) => val == null ? "Required" : null,
     );
   }
 }

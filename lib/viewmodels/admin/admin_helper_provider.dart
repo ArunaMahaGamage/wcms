@@ -16,8 +16,22 @@ class HelperSubmitNotifier extends StateNotifier<AsyncValue<void>> {
       state = AsyncValue.error(e, st);
     }
   }
+
+  Future<void> readAllHelper() async {
+    state = const AsyncValue.loading();
+    try {
+      await HelperApiService().readAllHelper();
+      state = const AsyncValue.data(null);
+    } catch (e, st) {
+      state = AsyncValue.error(e, st);
+    }
+  }
 }
 
 final helperSubmitProvider = StateNotifierProvider<HelperSubmitNotifier, AsyncValue<void>>((ref) {
   return HelperSubmitNotifier();
+});
+
+final allHelpersProvider = FutureProvider<List<AdminHelper>>((ref) async {
+  return await HelperApiService().readAllHelper();
 });

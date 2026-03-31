@@ -13,4 +13,18 @@ class HelperApiService {
       throw e.response?.data['message'] ?? "Failed to add helper";
     }
   }
+
+  Future<List<AdminHelper>> readAllHelper() async {
+    try {
+      final response = await _dio.post('/api/helper/read-all-helper');
+      if (response.statusCode == 200) {
+        List<dynamic> data = response.data;
+        return data.map((item) => AdminHelper.fromMap(item)).toList();
+      } else {
+        throw "Failed to load drivers";
+      }
+    } on DioException catch (e) {
+      throw e.response?.data['message'] ?? "Connection error";
+    }
+  }
 }

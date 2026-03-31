@@ -15,7 +15,7 @@ class DriverApiService {
 
   Future<List<AdminDriver>> readAllDrivers() async {
     try {
-      final response = await _dio.get('/api/driver/read-all-driver');
+      final response = await _dio.post('/api/driver/read-all-driver');
       if (response.statusCode == 200) {
         List<dynamic> data = response.data;
         return data.map((item) => AdminDriver.fromMap(item)).toList();
