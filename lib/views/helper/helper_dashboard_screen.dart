@@ -31,6 +31,8 @@ class HelperDashboardScreen extends ConsumerWidget {
               onTap: () {
                 if (items[index].title == items[0].title) {
                   Future.microtask(() => Navigator.pushReplacementNamed(context, Routes.feedbackHelper));
+                } else if (items[index].title == items[1].title) {
+                  Future.microtask(() => Navigator.pushReplacementNamed(context, Routes.notificationHelper));
                 }
               },
               child: Card(
