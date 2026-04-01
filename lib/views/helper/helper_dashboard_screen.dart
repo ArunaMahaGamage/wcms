@@ -33,6 +33,8 @@ class HelperDashboardScreen extends ConsumerWidget {
                   Future.microtask(() => Navigator.pushReplacementNamed(context, Routes.feedbackHelper));
                 } else if (items[index].title == items[1].title) {
                   Future.microtask(() => Navigator.pushReplacementNamed(context, Routes.notificationHelper));
+                } else if (items[index].title == items[2].title) {
+                  Future.microtask(() => Navigator.pushReplacementNamed(context, Routes.profileHelper));
                 }
               },
               child: Card(

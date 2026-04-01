@@ -30,6 +30,7 @@ import 'package:wcms/views/driver/driver_sign_in_screen.dart';
 import 'package:wcms/views/helper/helper_dashboard_screen.dart';
 import 'package:wcms/views/helper/helper_feedback_screen.dart';
 import 'package:wcms/views/helper/helper_notification_screen.dart';
+import 'package:wcms/views/helper/helper_profile_screen.dart';
 import 'package:wcms/views/helper/helper_signin_screen.dart';
 import 'package:wcms/views/onboarding_screen.dart';
 import 'core/routes.dart';
@@ -104,6 +105,7 @@ class App extends ConsumerWidget {
         Routes.dashboardHelper: (_) => const HelperDashboardScreen(),
         Routes.feedbackHelper: (_) => const HelperFeedbackScreen(),
         Routes.notificationHelper: (_) => const HelperNotificationScreen(),
+        Routes.profileHelper: (_) => const HelperProfileScreen(),
         Routes.onboarding: (_) => const OnboardingScreen(),
         //Routes.home: (_) => const HomeScreen(),
       },

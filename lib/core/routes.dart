@@ -45,6 +45,7 @@ class Routes {
   static const dashboardHelper = '/dashboard_helper';
   static const feedbackHelper = '/feedback_helper';
   static const notificationHelper = '/notification_helper';
+  static const profileHelper = '/profile_helper';
   static const onboarding = '/onboarding';
   static const home = '/home';
 }
