@@ -8,7 +8,7 @@ class HelperProfileApiService {
   Future<HelperProfile> getProfile(String idNumber) async {
     try {
       // Assuming endpoint: /api/helper/profile/{idNumber}
-      final response = await _dio.get('/api/helper/profile/$idNumber');
+      final response = await _dio.get('/api/helper/read-helper/$idNumber');
       return HelperProfile.fromMap(response.data);
     } on DioException catch (e) {
       throw e.response?.data['message'] ?? "Failed to load profile";

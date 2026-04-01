@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:wcms/api/helper/helper_sign_in_api_service.dart';
 import 'package:wcms/config/image_path.dart';
 import 'package:wcms/models/helper/helper_sign_in.dart';
+import 'package:wcms/viewmodels/helper/helper_sign_in_provider.dart';
 
 import '../../components/custom_button.dart';
 import '../../config/string_values.dart';
@@ -26,6 +27,7 @@ class HelperSignInScreen extends ConsumerWidget {
       final admin = HelperSignIn.fromMap(adminSignInData);
       HelperSignIn helperSignInResponse = await HelperSignInApiService().createHelperSign(admin);
       if (helperSignInResponse.userId.isNotEmpty) {
+        ref.read(helperSignInStoreProvider.notifier).state = helperSignInResponse;
         Future.microtask(() => Navigator.pushReplacementNamed(context, Routes.dashboardHelper));
       }
       return helperSignInResponse;
