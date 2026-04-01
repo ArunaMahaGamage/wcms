@@ -16,9 +16,23 @@ class VehicleSubmitNotifier extends StateNotifier<AsyncValue<void>> {
       state = AsyncValue.error(e, st);
     }
   }
+
+  Future readAllVehicle() async {
+    state = const AsyncValue.loading();
+    try {
+      await AdminVehicleApiService().readAllVehicle();
+      state = const AsyncValue.data(null);
+    } catch (e, st) {
+      state = AsyncValue.error(e, st);
+    }
+  }
 }
 
 // The submission provider
 final vehicleSubmitProvider = StateNotifierProvider<VehicleSubmitNotifier, AsyncValue<void>>((ref) {
   return VehicleSubmitNotifier();
+});
+
+final allVehicleProvider = FutureProvider<List<AddVehicle>>((ref) async {
+  return await AdminVehicleApiService().readAllVehicle();
 });

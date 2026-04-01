@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:wcms/models/admin/add_vehicle.dart';
 import 'package:wcms/models/admin/admin_driver.dart';
 import 'package:wcms/models/admin/admin_helper.dart';
+import 'package:wcms/viewmodels/admin/add_vehicle_provider.dart';
 import 'package:wcms/viewmodels/admin/admin_add_driver_provider.dart';
 import 'package:wcms/viewmodels/admin/admin_manage_team_provider.dart';
 import 'package:wcms/viewmodels/admin/admin_helper_provider.dart'; // Import Helper provider
@@ -17,6 +19,7 @@ class ManageTeamScreen extends ConsumerWidget {
     final submissionState = ref.watch(teamSubmitProvider);
 
     // 1. Watch the lists for Drivers and Helpers
+    final vehicleAsync = ref.watch(allVehicleProvider);
     final driversAsync = ref.watch(allDriversProvider);
     final helpersAsync = ref.watch(allHelpersProvider);
 
@@ -38,7 +41,7 @@ class ManageTeamScreen extends ConsumerWidget {
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
               const SizedBox(height: 20),
 
-              TextFormField(
+              /*TextFormField(
                 decoration: const InputDecoration(
                   labelText: "Vehicle ID / Plate Number",
                   border: OutlineInputBorder(),
@@ -46,7 +49,7 @@ class ManageTeamScreen extends ConsumerWidget {
                 ),
                 onSaved: (val) => teamData['vehicleId'] = val,
                 validator: (val) => val!.isEmpty ? "Required" : null,
-              ),
+              ),*/
               const SizedBox(height: 16),
 
               // 2. Job Role Dropdown (updates state to trigger list change)
@@ -80,6 +83,14 @@ class ManageTeamScreen extends ConsumerWidget {
 
               const SizedBox(height: 30),
 
+              _buildVehicleSelector(
+                vehicleAsync: vehicleAsync,
+                currentValue: teamData['vehicleId'],
+                onChanged: (val) => teamData['vehicleId'] = val,
+              ),
+
+              const SizedBox(height: 30),
+
               SizedBox(
                 width: double.infinity,
                 height: 50,
@@ -99,7 +110,7 @@ class ManageTeamScreen extends ConsumerWidget {
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(content: Text("Assignment Successful"), backgroundColor: Colors.green),
                         );
-                        Navigator.pop(context);
+                        Navigator.pushReplacementNamed(context, Routes.dashboardAdmin);
                       }
                     }
                   },
@@ -116,6 +127,18 @@ class ManageTeamScreen extends ConsumerWidget {
   }
 
   // 4. Helper Widget to build the dynamic selector
+  Widget _buildVehicleSelector({
+    required AsyncValue<List<AddVehicle>> vehicleAsync,
+    required String? currentValue,
+    required Function(String?) onChanged,
+  }) {
+    return vehicleAsync.when(
+      data: (vehicle) => _buildDropdown("Vehicle ID / Plate Number", vehicle, (v) => v.vehicleId, (v) => v.manufacture + " " + v.model, currentValue, onChanged),
+      loading: () => const LinearProgressIndicator(),
+      error: (err, _) => Text("Error loading drivers: $err"),
+    );
+  }
+
   Widget _buildStaffSelector({
     required String? role,
     required AsyncValue<List<AdminDriver>> driversAsync,

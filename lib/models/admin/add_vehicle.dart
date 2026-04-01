@@ -1,5 +1,5 @@
 class AddVehicle {
-  final int? vehicleId;
+  final String vehicleId;
   final String type;
   final String model;
   final String manufacture;
@@ -9,7 +9,7 @@ class AddVehicle {
   final String gearType;
 
   AddVehicle({
-    this.vehicleId,
+    required this.vehicleId,
     required this.type,
     required this.model,
     required this.manufacture,

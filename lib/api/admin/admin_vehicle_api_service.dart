@@ -14,4 +14,18 @@ class AdminVehicleApiService {
       throw e.response?.data['message'] ?? "Failed to create vehicle";
     }
   }
+
+  Future<List<AddVehicle>> readAllVehicle() async {
+    try {
+      final response = await _dio.post('/api/vehicle/read-all-vehicle');
+      if (response.statusCode == 200) {
+        List<dynamic> data = response.data;
+        return data.map((item) => AddVehicle.fromMap(item)).toList();
+      } else {
+        throw "Failed to load drivers";
+      }
+    } on DioException catch (e) {
+      throw e.response?.data['message'] ?? "Connection error";
+    }
+  }
 }
