@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:wcms/core/routes.dart';
 import '../../viewmodels/helper/feedback_provider.dart';
 import '../../models/helper/helper_feedback.dart';
 
@@ -13,7 +14,11 @@ class HelperFeedbackScreen extends ConsumerWidget {
     final submissionState = ref.watch(feedbackSubmitProvider);
 
     return Scaffold(
-      appBar: AppBar(title: const Text("Submit Feedback")),
+      appBar: AppBar(
+          leading: IconButton(
+              icon: Icon(Icons.arrow_back), onPressed: () => Future.microtask(() => Navigator.pushReplacementNamed(context, Routes.dashboardHelper))
+          ),
+          title: const Text("Submit Feedback")),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Form(
