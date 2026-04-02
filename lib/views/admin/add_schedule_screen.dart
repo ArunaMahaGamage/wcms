@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:wcms/core/routes.dart';
+import 'package:wcms/viewmodels/admin/add_vehicle_provider.dart';
 import 'package:wcms/viewmodels/admin/schedule_route_provider.dart';
 
 class AddScheduleScreen extends ConsumerStatefulWidget {
@@ -17,6 +18,7 @@ class _AddScheduleScreenState extends ConsumerState<AddScheduleScreen> {
   Widget build(BuildContext context) {
     final formData = ref.watch(scheduleFormProvider);
     final submissionState = ref.watch(scheduleRouteSubmitProvider);
+    final vehicleAsync = ref.watch(allVehicleProvider);
 
     return Scaffold(
       appBar: AppBar(
@@ -77,10 +79,34 @@ class _AddScheduleScreenState extends ConsumerState<AddScheduleScreen> {
                   onChanged: (val) => formData['wasteType'] = val,
                 ),
                 const SizedBox(height: 16),
-                TextFormField(
+                // DYNAMIC VEHICLE DROPDOWN
+                vehicleAsync.when(
+                  data: (vehicles) => DropdownButtonFormField<String>(
+                    decoration: const InputDecoration(
+                      labelText: "Assign Vehicle (Plate Number)",
+                      border: OutlineInputBorder(),
+                      prefixIcon: Icon(Icons.local_shipping),
+                    ),
+                    // If a vehicle is already selected in formData, set it as value
+                    value: formData['vehicleId'].isEmpty ? null : formData['vehicleId'],
+                    items: vehicles.map((vehicle) => DropdownMenuItem(
+                      value: vehicle.vehicleId,
+                      child: Text("${vehicle.vehicleId} (${vehicle.type})"),
+                    )).toList(),
+                    onChanged: (val) {
+                      setState(() {
+                        formData['vehicleId'] = val;
+                      });
+                    },
+                    validator: (val) => val == null || val.isEmpty ? "Required" : null,
+                  ),
+                  loading: () => const LinearProgressIndicator(),
+                  error: (err, _) => Text("Error loading vehicles: $err", style: const TextStyle(color: Colors.red)),
+                ),
+                /*TextFormField(
                   decoration: const InputDecoration(labelText: "Assign Vehicle (ID/Plate)", border: OutlineInputBorder()),
                   onChanged: (val) => formData['vehicleId'] = val,
-                ),
+                ),*/
                 const SizedBox(height: 16),
                 TextFormField(
                   decoration: const InputDecoration(labelText: "Assign Driver (Name/ID)", border: OutlineInputBorder()),
