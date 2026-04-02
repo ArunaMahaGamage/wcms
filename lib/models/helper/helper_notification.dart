@@ -1,5 +1,6 @@
 class HelperNotification {
-  final int? id;  final String title;
+  final int? id;
+  final String title;
   final String message;
   final DateTime sentAt;
   final String type; // 'alert', 'assignment', 'info'
