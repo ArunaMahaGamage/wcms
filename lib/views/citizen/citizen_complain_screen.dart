@@ -100,7 +100,7 @@ class CitizenComplainScreen extends ConsumerWidget {
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
                     final newComplaint = Complain(
-                      //id: DateTime.now().millisecondsSinceEpoch,
+                      complainTitle: _complainTitleController.text,
                       complainIDNumber: generateRandomId(10),//_complainTitleController.text,
                       citizenIDNumber: _citizenIDController.text,
                       complain: _complainController.text,

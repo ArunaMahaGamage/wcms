@@ -20,6 +20,7 @@ final allComplaintsProvider =
 FutureProvider.family<List<Complain>, String>((ref, citizenId) async {
 
   final requestParams = Complain(
+      complainTitle: '',
       complainIDNumber: '',
       citizenIDNumber: citizenId,
       complain: '',
