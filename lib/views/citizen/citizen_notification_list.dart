@@ -91,7 +91,8 @@ class CitizenNotificationScreen extends ConsumerWidget {
                       Text(item.message),
                       const SizedBox(height: 8),
                       Text(
-                        DateFormat('dd MMM, hh:mm a').format(item.timestamp),
+                        //DateFormat('dd MMM, hh:mm a').format(item.timestamp),
+                        item.type,
                         style: TextStyle(fontSize: 12, color: Colors.grey[600]),
                       ),
                     ],
