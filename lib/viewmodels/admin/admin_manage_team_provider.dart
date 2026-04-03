@@ -1,6 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:wcms/api/admin/admin_manage_team_api_service.dart';
+import 'package:wcms/api/admin/manage_team_api_service.dart';
 import 'package:wcms/models/admin/manage_team.dart';
+import 'package:wcms/viewmodels/admin/schedule_route_provider.dart';
 
 // To hold the form data state
 final teamFormProvider = StateProvider<Map<String, dynamic>>((ref) => {
@@ -27,3 +29,15 @@ class TeamSubmitNotifier extends StateNotifier<AsyncValue<void>> {
     }
   }
 }
+
+/*final manageTeamDriversProvider = FutureProvider<List<ManageTeam>>((ref) async {
+
+  final scheduleForm = ref.watch(scheduleFormProvider);
+
+  return await ManageTeamApiService().readVehicleJobRole(scheduleForm['vehicleId'],"Driver");
+});*/
+
+// viewmodels/admin/admin_manage_team_provider.dart
+final manageTeamDriversProvider = FutureProvider.family<List<ManageTeam>, String>((ref, vehicleId) async {
+  return await ManageTeamApiService().readVehicleJobRole(vehicleId, "Driver");
+});

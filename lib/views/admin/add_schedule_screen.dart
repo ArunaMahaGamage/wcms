@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:wcms/core/routes.dart';
+import 'package:wcms/models/admin/manage_team.dart';
 import 'package:wcms/viewmodels/admin/add_vehicle_provider.dart';
+import 'package:wcms/viewmodels/admin/admin_add_driver_provider.dart';
+import 'package:wcms/viewmodels/admin/admin_manage_team_provider.dart';
 import 'package:wcms/viewmodels/admin/schedule_route_provider.dart';
 
 class AddScheduleScreen extends ConsumerStatefulWidget {
@@ -19,6 +22,13 @@ class _AddScheduleScreenState extends ConsumerState<AddScheduleScreen> {
     final formData = ref.watch(scheduleFormProvider);
     final submissionState = ref.watch(scheduleRouteSubmitProvider);
     final vehicleAsync = ref.watch(allVehicleProvider);
+    //final manageTeamDriversAsync = ref.watch(manageTeamDriversProvider);
+
+    final String selectedVehicleId = formData['vehicleId'] ?? '';
+    final manageTeamDriversAsync = selectedVehicleId.isNotEmpty
+        ? ref.watch(manageTeamDriversProvider(selectedVehicleId))
+        : const AsyncValue.data(<ManageTeam>[]); // Empty list if no vehicle selected
+
 
     return Scaffold(
       appBar: AppBar(
@@ -108,10 +118,23 @@ class _AddScheduleScreenState extends ConsumerState<AddScheduleScreen> {
                   onChanged: (val) => formData['vehicleId'] = val,
                 ),*/
                 const SizedBox(height: 16),
-                TextFormField(
+                /*TextFormField(
                   decoration: const InputDecoration(labelText: "Assign Driver (Name/ID)", border: OutlineInputBorder()),
                   onChanged: (val) => formData['driverId'] = val,
-                ),
+                ),*/
+                if (selectedVehicleId.isEmpty)
+                  const Text("Please select a vehicle first to load drivers",
+                      style: TextStyle(color: Colors.grey, fontSize: 12))
+                else
+                  _buildDriverSelector(
+                    vehicleAsync: manageTeamDriversAsync,
+                    currentValue: formData['driverId'],
+                    onChanged: (val) {
+                      setState(() {
+                        formData['driverId'] = val;
+                      });
+                    },
+                  ),
                 const SizedBox(height: 32),
                 SizedBox(
                   width: double.infinity,
@@ -141,6 +164,56 @@ class _AddScheduleScreenState extends ConsumerState<AddScheduleScreen> {
     return Padding(
       padding: const EdgeInsets.only(bottom: 12),
       child: Text(title, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.blueGrey)),
+    );
+  }
+
+  Widget _buildDriverSelector({
+    required AsyncValue<List<ManageTeam>> vehicleAsync,
+    required String? currentValue,
+    required Function(String?) onChanged,
+  }) {
+    return vehicleAsync.when(
+      data: (drivers) {
+        if (drivers.isEmpty) {
+          return const Text("No drivers assigned to this vehicle in Manage Team.",
+              style: TextStyle(color: Colors.orange));
+        }
+        return _buildDropdown(
+            "Assign Driver (ID Number)",
+            drivers,
+                (v) => v.idNumber,
+                (v) => v.idNumber, // You can change this to v.name if your ManageTeam model has it
+            currentValue,
+            onChanged
+        );
+      },
+      loading: () => const LinearProgressIndicator(),
+      error: (err, _) => Text("Error loading assigned drivers: $err",
+          style: const TextStyle(color: Colors.red)),
+    );
+  }
+
+  Widget _buildDropdown<T>(
+      String label,
+      List<T> items,
+      String Function(T) getId,
+      String Function(T) getName,
+      String? currentValue,
+      Function(String?) onChanged,
+      ) {
+    return DropdownButtonFormField<String>(
+      decoration: InputDecoration(
+          labelText: label,
+          border: const OutlineInputBorder(),
+          prefixIcon: const Icon(Icons.person)
+      ),
+      value: (currentValue == null || currentValue.isEmpty) ? null : currentValue,
+      items: items.map((item) => DropdownMenuItem(
+        value: getId(item),
+        child: Text("${getId(item)}"), // Displaying ID
+      )).toList(),
+      onChanged: onChanged,
+      validator: (val) => val == null || val.isEmpty ? "Required" : null,
     );
   }
 }
