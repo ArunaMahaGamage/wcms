@@ -99,7 +99,14 @@ class AllSchedulesScreen extends ConsumerWidget {
                   children: [
                     const Icon(Icons.local_shipping, size: 18, color: Colors.grey),
                     const SizedBox(width: 8),
-                    Text("Vehicle: ${item.vehicleId} (${item.driverId})"),
+                    Text("Vehicle: ${item.vehicleId}"),
+                  ],
+                ),
+                Row(
+                  children: [
+                    const Icon(Icons.people, size: 18, color: Colors.grey),
+                    const SizedBox(width: 8),
+                    Text("Driver: (${item.driverId})"),
                   ],
                 ),
               ],
