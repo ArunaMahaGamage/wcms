@@ -1,34 +1,33 @@
 class AdminSchedule {
-  final int? id;
-  final String zone;
-  final String day;
-  final String timeSlot;
+  final int? id;  final String zoneName;
+  final String dayOfWeek;
+  final String startTime;
+  final String endTime;
   final String wasteType;
-  final String vehicleNumber;
-  final String driverName;
-  final bool isActive;
+  final String vehicleId;
+  final String driverId;
 
   AdminSchedule({
     this.id,
-    required this.zone,
-    required this.day,
-    required this.timeSlot,
+    required this.zoneName,
+    required this.dayOfWeek,
+    required this.startTime,
+    required this.endTime,
     required this.wasteType,
-    required this.vehicleNumber,
-    required this.driverName,
-    this.isActive = true,
+    required this.vehicleId,
+    required this.driverId,
   });
 
-  factory AdminSchedule.fromMap(Map<String, dynamic> map) {
+  factory AdminSchedule.fromJson(Map<String, dynamic> json) {
     return AdminSchedule(
-      id: map['id'],
-      zone: map['zone'] ?? '',
-      day: map['day'] ?? '',
-      timeSlot: map['timeSlot'] ?? '',
-      wasteType: map['wasteType'] ?? '',
-      vehicleNumber: map['vehicleNumber'] ?? '',
-      driverName: map['driverName'] ?? '',
-      isActive: map['isActive'] ?? true,
+      id: json['id'],
+      zoneName: json['zoneName'] ?? '',
+      dayOfWeek: json['dayOfWeek'] ?? '',
+      startTime: json['startTime'] ?? '',
+      endTime: json['endTime'] ?? '',
+      wasteType: json['wasteType'] ?? '',
+      vehicleId: json['vehicleId'] ?? '',
+      driverId: json['driverId'] ?? '',
     );
   }
 }

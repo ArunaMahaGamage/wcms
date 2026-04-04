@@ -34,7 +34,7 @@ class AllSchedulesScreen extends ConsumerWidget {
         data: (schedules) {
           final filteredList = dayFilter == 'All'
               ? schedules
-              : schedules.where((s) => s.day == dayFilter).toList();
+              : schedules.where((s) => s.dayOfWeek == dayFilter).toList();
 
           if (filteredList.isEmpty) {
             return const Center(child: Text("No collection schedules found."));
@@ -71,7 +71,7 @@ class AllSchedulesScreen extends ConsumerWidget {
           ListTile(
             contentPadding: const EdgeInsets.all(16),
             title: Text(
-              item.zone,
+              item.zoneName,
               style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
             ),
             subtitle: Column(
@@ -82,7 +82,7 @@ class AllSchedulesScreen extends ConsumerWidget {
                   children: [
                     const Icon(Icons.event, size: 18, color: Colors.green),
                     const SizedBox(width: 8),
-                    Text("${item.day} | ${item.timeSlot}",
+                    Text("${item.dayOfWeek} | ${item.startTime} - ${item.endTime}",
                         style: const TextStyle(fontWeight: FontWeight.w600)),
                   ],
                 ),
@@ -99,7 +99,7 @@ class AllSchedulesScreen extends ConsumerWidget {
                   children: [
                     const Icon(Icons.local_shipping, size: 18, color: Colors.grey),
                     const SizedBox(width: 8),
-                    Text("Vehicle: ${item.vehicleNumber} (${item.driverName})"),
+                    Text("Vehicle: ${item.vehicleId} (${item.driverId})"),
                   ],
                 ),
               ],
