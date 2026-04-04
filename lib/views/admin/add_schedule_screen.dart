@@ -17,6 +17,26 @@ class AddScheduleScreen extends ConsumerStatefulWidget {
 class _AddScheduleScreenState extends ConsumerState<AddScheduleScreen> {
   final _formKey = GlobalKey<FormState>();
 
+  Future<void> _selectTime(BuildContext context, String key) async {
+    final TimeOfDay? picked = await showTimePicker(
+      context: context,
+      initialTime: TimeOfDay.now(),
+    );
+
+    if (picked != null) {
+      // Format the time to a readable string (e.g., 8:30 AM)
+      final String formattedTime = picked.format(context);
+
+      setState(() {
+        // Update the Riverpod provider state
+        ref.read(scheduleFormProvider.notifier).state = {
+          ...ref.read(scheduleFormProvider),
+          key: formattedTime,
+        };
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final formData = ref.watch(scheduleFormProvider);
@@ -62,7 +82,7 @@ class _AddScheduleScreenState extends ConsumerState<AddScheduleScreen> {
                   onChanged: (val) => formData['dayOfWeek'] = val,
                 ),
                 const SizedBox(height: 16),
-                Row(
+                /*Row(
                   children: [
                     Expanded(
                       child: TextFormField(
@@ -75,6 +95,40 @@ class _AddScheduleScreenState extends ConsumerState<AddScheduleScreen> {
                       child: TextFormField(
                         decoration: const InputDecoration(labelText: "End Time", hintText: "10:00 AM", border: OutlineInputBorder()),
                         onChanged: (val) => formData['endTime'] = val,
+                      ),
+                    ),
+                  ],
+                ),*/
+                Row(
+                  children: [
+                    Expanded(
+                      child: TextFormField(
+                        // Use controller to display the value from formData
+                        controller: TextEditingController(text: formData['startTime']),
+                        readOnly: true, // Prevent manual typing
+                        onTap: () => _selectTime(context, 'startTime'),
+                        decoration: const InputDecoration(
+                          labelText: "Start Time",
+                          hintText: "Select Time",
+                          border: OutlineInputBorder(),
+                          prefixIcon: Icon(Icons.access_time),
+                        ),
+                        validator: (val) => (val == null || val.isEmpty) ? "Required" : null,
+                      ),
+                    ),
+                    const SizedBox(width: 10),
+                    Expanded(
+                      child: TextFormField(
+                        controller: TextEditingController(text: formData['endTime']),
+                        readOnly: true,
+                        onTap: () => _selectTime(context, 'endTime'),
+                        decoration: const InputDecoration(
+                          labelText: "End Time",
+                          hintText: "Select Time",
+                          border: OutlineInputBorder(),
+                          prefixIcon: Icon(Icons.access_time),
+                        ),
+                        validator: (val) => (val == null || val.isEmpty) ? "Required" : null,
                       ),
                     ),
                   ],
