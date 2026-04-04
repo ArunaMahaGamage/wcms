@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:wcms/api/admin/admin_schedule_api_service.dart';
 
 // Form State Provider
 final scheduleFormProvider = StateProvider.autoDispose<Map<String, dynamic>>((ref) => {
@@ -18,8 +19,9 @@ class ScheduleRouteNotifier extends StateNotifier<AsyncValue<void>> {
   Future<void> submitSchedule(Map<String, dynamic> data) async {
     state = const AsyncValue.loading();
     try {
-      // Simulate API call to backend
-      await Future.delayed(const Duration(seconds: 2));
+      // ACTUAL API CALL
+      await AdminScheduleApiService().createSchedule(data);
+
       state = const AsyncValue.data(null);
     } catch (e, st) {
       state = AsyncValue.error(e, st);

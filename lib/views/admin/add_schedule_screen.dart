@@ -197,9 +197,11 @@ class _AddScheduleScreenState extends ConsumerState<AddScheduleScreen> {
                     style: ElevatedButton.styleFrom(backgroundColor: Colors.green, foregroundColor: Colors.white),
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
-                        ref.read(scheduleRouteSubmitProvider.notifier).submitSchedule(formData).then((_) {
+                        ref.watch(scheduleRouteSubmitProvider.notifier).submitSchedule(formData).then((_) {
                           ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Schedule Created Successfully")));
-                          Navigator.pop(context);
+                          Future.microtask(() =>
+                              Navigator.pushReplacementNamed(context, Routes.dashboardAdmin)
+                          );
                         });
                       }
                     },
