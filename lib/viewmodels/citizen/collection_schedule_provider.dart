@@ -1,4 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:wcms/api/admin/admin_schedule_api_service.dart';
+import 'package:wcms/models/admin/admin_schedule.dart';
 import '../../models/citizen/citizen_collection_schedule.dart';
 
 // This provider simulates fetching data from an API
@@ -33,4 +35,8 @@ final collectionScheduleProvider = FutureProvider<List<CitizenCollectionSchedule
       driverContact: "0755554433",
     ),
   ];
+});
+
+final allSchedulesProvider = FutureProvider<List<AdminSchedule>>((ref) async {
+  return await AdminScheduleApiService().getAllSchedules();
 });

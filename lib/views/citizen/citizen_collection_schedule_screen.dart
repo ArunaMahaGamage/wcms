@@ -8,7 +8,8 @@ class CitizenCollectionScheduleScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final scheduleAsync = ref.watch(collectionScheduleProvider);
+    //final scheduleAsync = ref.watch(collectionScheduleProvider);
+    final scheduleAsync = ref.watch(allSchedulesProvider);
 
     return Scaffold(
       appBar: AppBar(
@@ -44,7 +45,7 @@ class CitizenCollectionScheduleScreen extends ConsumerWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            item.day,
+                            item.dayOfWeek,
                             style: const TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
@@ -77,17 +78,17 @@ class CitizenCollectionScheduleScreen extends ConsumerWidget {
                         children: [
                           const Icon(Icons.local_shipping, size: 20, color: Colors.grey),
                           const SizedBox(width: 8),
-                          Text("Vehicle: ${item.vehicleNumber}"),
+                          Text("Vehicle: ${item.vehicleId}"),
                         ],
                       ),
                       const SizedBox(height: 8),
-                      Row(
+                      /*Row(
                         children: [
                           const Icon(Icons.phone, size: 20, color: Colors.grey),
                           const SizedBox(width: 8),
                           Text("Driver: ${item.driverContact}"),
                         ],
-                      ),
+                      ),*/
                     ],
                   ),
                 ),
