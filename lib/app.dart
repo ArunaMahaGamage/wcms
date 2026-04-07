@@ -38,6 +38,9 @@ import 'models/settings.dart';
 import 'views/admin/add_admin_screen.dart';
 import 'views/citizen/citizen_environment_impact.dart';
 import 'views/common/splash_screen.dart';
+import 'views/driver/driver_feedback_screen.dart';
+import 'views/driver/driver_notification_screen.dart';
+import 'views/driver/driver_profile_screen.dart';
 
 
 class App extends ConsumerWidget {
@@ -100,6 +103,9 @@ class App extends ConsumerWidget {
         // Driver
         Routes.signInDriver: (_) => const DriverSignInScreen(),
         Routes.dashboardDriver: (_) => const DriverDashboardScreen(),
+        Routes.feedbackDriver: (_) => const DriverFeedbackScreen(),
+        Routes.notificationDriver: (_) => const DriverNotificationScreen(),
+        Routes.profileDriver: (_) => const DriverProfileScreen(),
         // Helper
         Routes.signInHelper: (_) => const HelperSignInScreen(),
         Routes.dashboardHelper: (_) => const HelperDashboardScreen(),

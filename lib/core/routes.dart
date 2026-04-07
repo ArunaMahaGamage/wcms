@@ -39,6 +39,9 @@ class Routes {
   // Driver
   static const signInDriver = '/sign_in_driver';
   static const dashboardDriver = '/dashboard_driver';
+  static const feedbackDriver = '/feedback_driver';
+  static const notificationDriver = '/notification_driver';
+  static const profileDriver = '/profile_driver';
 
   // Helper
   static const signInHelper = '/sign_in_helper';
